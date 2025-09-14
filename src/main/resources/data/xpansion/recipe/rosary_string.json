@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "xpansion:kinectic_rosaries"
+    },
+    "B": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    " AB",
+    " A ",
+    "BA "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:rosary_string"
+  }
+}
