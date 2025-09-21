@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "xpansion:left_copper_heart"
+    },
+    "B": {
+      "item": "xpansion:right_copper_heart"
+    }
+  },
+  "pattern": [
+    "AB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:copper_heart"
+  }
+}

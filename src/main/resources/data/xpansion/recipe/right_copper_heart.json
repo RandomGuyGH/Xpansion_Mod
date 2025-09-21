@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:copper_ingot"
+    },
+    "B": {
+      "item": "minecraft:blaze_rod"
+    }
+  },
+  "pattern": [
+    "AA",
+    "BA",
+    "A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:right_copper_heart"
+  }
+}

@@ -2,13 +2,45 @@
   "item.xpansion.reflexium": "Reflexium Ingot",
   "item.xpansion.reflexium_ore": "Raw Reflexium",
   "item.xpansion.cherry_blossom": "Cherry Blossom",
+  "item.xpansion.left_copper_heart": "Left Half of a Copper Heart",
+  "item.xpansion.right_copper_heart": "Right Half of a Copper Heart",
   "item.xpansion.kinectic_rosaries": "Kinectic Rosaries",
   "item.xpansion.rosary_string": "Rosary String",
+  "item.xpansion.rose_gold": "Rose Gold Ingot",
+  "item.xpansion.light_silk": "Silk",
 
   "block.xpansion.reflexium_ore_block": "Reflexium Ore",
   "block.xpansion.reflexium_block": "Reflexium Block",
   "block.xpansion.kinectic_glass": "Kinectic Glass",
 
+  "item.xpansion.slime_injection": "Slime Injection",
+
+  "item.xpansion.swift_cloak": "Swift Cloak",
+  "tooltip.xpansion.swift_cloak_description": "A dark cloak that pushes wind with an extreme force.",
+  "tooltip.xpansion.swift_cloak_function": "Press Space to dash in the direction you are facing.",
+  "item.xpansion.climb_claw": "Climb Claw",
+  "tooltip.xpansion.climb_claw_description": "A pair of sharp claws that can penetrate every object.",
+  "tooltip.xpansion.climb_claw_function": "Hold Space to start climbing a surface.",
+  "item.xpansion.gale_wings": "Gale Wings",
+  "tooltip.xpansion.gale_wings_description": "A pair of shining wings.",
+  "tooltip.xpansion.gale_wings_function": "Press Space to make a super jump.",
+
+  "item.xpansion.cherry_bouquet": "Cherry Bouquet",
+  "tooltip.xpansion.cherry_bouquet_description": "A pretty bouquet with shining petals.",
+  "tooltip.xpansion.cherry_bouquet_function": "Makes so that the bearer has a chance of not taking damage, increasing that chance after taking damage and resetting after not.",
+  "item.xpansion.copper_heart": "Copper Heart",
+  "tooltip.xpansion.copper_heart_description": "Two halves of a heart, now together and fully functional.",
+  "tooltip.xpansion.copper_heart_function": "Makes the bearer tougher after taking great injuries.",
+  "item.xpansion.quick_feet": "Quick Feet",
+  "tooltip.xpansion.quick_feet_description": "A homemade charm resembling a small boot.",
+  "tooltip.xpansion.quick_feet_function": "Increases the bearer speed.",
+  "item.xpansion.swift_feather": "Swift Feather",
+  "tooltip.xpansion.swift_feather_description": "A black feather that seems to move on its own.",
+  "tooltip.xpansion.swift_feather_function": "Makes the bearer's cloak propulsion have a shorter cooldown.",
+
   "creativetab.xpansion.xpansion_blocks": "Xpansion Building Blocks",
-  "creativetab.xpansion.xpansion_ingredients": "Xpansion Ingredients"
+  "creativetab.xpansion.xpansion_ingredients": "Xpansion Ingredients",
+  "creativetab.xpansion.xpansion_weapons": "Xpansion Equipments",
+  "creativetab.xpansion.xpansion_accolades": "Xpansion Equipments",
+  "creativetab.xpansion.xpansion_charms": "Xpansion Charms"
 }

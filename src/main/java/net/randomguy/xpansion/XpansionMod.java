@@ -1,7 +1,10 @@
 package net.randomguy.xpansion;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -18,6 +21,8 @@ import net.randomguy.xpansion.block.ModBlocks;
 import net.randomguy.xpansion.item.ModCreativeModeTabs;
 import net.randomguy.xpansion.item.ModItems;
 import org.slf4j.Logger;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(XpansionMod.MOD_ID)
@@ -32,7 +37,6 @@ public class XpansionMod {
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
         ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
@@ -43,6 +47,7 @@ public class XpansionMod {
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

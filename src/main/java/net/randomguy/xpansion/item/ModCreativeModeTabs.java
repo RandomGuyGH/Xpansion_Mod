@@ -33,10 +33,58 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.xpansion.xpansion_ingredients"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.CHERRY_BLOSSOM.get());
+                        output.accept(ModItems.ROSE_GOLD.get());
+                        output.accept(ModItems.LEFT_HALF_COPPER_HEART.get());
+                        output.accept(ModItems.RIGHT_HALF_COPPER_HEART.get());
+                        output.accept(ModItems.LIGHT_SILK.get());
                         output.accept(ModItems.REFLEXIUM_ORE.get());
                         output.accept(ModItems.REFLEXIUM.get());
                         output.accept(ModItems.KINECTIC_ROSARIES.get());
                         output.accept(ModItems.ROSARY_STRING.get());
+
+
+                    })
+
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> XPANSION_WEAPONS_TAB = CREATIVE_MODE_TABS.register("xpansion_weapons_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.SLIME_INJECTION.get()))
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
+                    .title(Component.translatable("creativetab.xpansion.xpansion_weapons"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.SLIME_INJECTION.get());
+
+                    })
+
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> XPANSION_ACCOLADES_TAB = CREATIVE_MODE_TABS.register("xpansion_accolades_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.SWIFT_CLOAK.get()))
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
+                    .withTabsBefore(XPANSION_WEAPONS_TAB.getId())
+                    .title(Component.translatable("creativetab.xpansion.xpansion_accolades"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.SWIFT_CLOAK.get());
+                        output.accept(ModItems.CLIMB_CLAW.get());
+                        output.accept(ModItems.GALE_WINGS.get());
+
+                    })
+
+                    .build());
+    public static final RegistryObject<CreativeModeTab> XPANSION_CHARMS_TAB = CREATIVE_MODE_TABS.register("xpansion_charms_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.IRON_LOTUS.get()))
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
+                    .withTabsBefore(XPANSION_WEAPONS_TAB.getId())
+                    .title(Component.translatable("creativetab.xpansion.xpansion_charms"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.CHERRY_BOUQUET.get());
+                        output.accept(ModItems.IRON_LOTUS.get());
+                        output.accept(ModItems.COPPER_HEART.get());
+                        output.accept(ModItems.QUICK_FEET.get());
+                        output.accept(ModItems.SWIFT_FEATHER.get());
 
 
                     })

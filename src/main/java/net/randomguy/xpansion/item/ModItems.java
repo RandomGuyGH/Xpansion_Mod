@@ -1,11 +1,15 @@
 package net.randomguy.xpansion.item;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.randomguy.xpansion.XpansionMod;
+import net.randomguy.xpansion.item.custom.HeartConsumableItem;
+
+import java.util.List;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -17,10 +21,115 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CHERRY_BLOSSOM = ITEMS.register("cherry_blossom",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LEFT_HALF_COPPER_HEART = ITEMS.register("left_copper_heart",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> RIGHT_HALF_COPPER_HEART = ITEMS.register("right_copper_heart",
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> KINECTIC_ROSARIES = ITEMS.register("kinectic_rosaries",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ROSARY_STRING = ITEMS.register("rosary_string",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ROSE_GOLD = ITEMS.register("rose_gold",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LIGHT_SILK = ITEMS.register("light_silk",
+            () -> new Item(new Item.Properties()));
+
+
+    public static final RegistryObject<Item> SLIME_INJECTION = ITEMS.register("slime_injection",
+            () -> new HeartConsumableItem(new Item.Properties().stacksTo(1)));
+
+
+
+    public static final RegistryObject<Item> SWIFT_CLOAK = ITEMS.register("swift_cloak",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.swift_cloak_description"));
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.swift_cloak_function"));
+                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                }
+            });
+    public static final RegistryObject<Item> CLIMB_CLAW = ITEMS.register("climb_claw",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.climb_claw_description"));
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.climb_claw_function"));
+                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                }
+            });
+    public static final RegistryObject<Item> GALE_WINGS = ITEMS.register("gale_wings",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.gale_wings_description"));
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.gale_wings_function"));
+                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                }
+    });
+
+
+
+    public static final RegistryObject<Item> IRON_LOTUS =
+            ITEMS.register("iron_lotus",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.iron_lotus_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.iron_lotus_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> CHERRY_BOUQUET=
+            ITEMS.register("cherry_bouquet",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.cherry_bouquet_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.cherry_bouquet_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> COPPER_HEART =
+            ITEMS.register("copper_heart",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.copper_heart_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.copper_heart_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> QUICK_FEET =
+            ITEMS.register("quick_feet",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.quick_feet_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.quick_feet_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> SWIFT_FEATHER =
+            ITEMS.register("swift_feather",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.swift_feather_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.swift_feather_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> HUNGER_PIT =
+            ITEMS.register("hunger_pit",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.hunger_pit_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.hunger_pit_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

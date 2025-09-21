@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "xpansion:cherry_blossom"
+    },
+    "B": {
+      "item": "xpansion:paper"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "AAA",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:cherry_bouquet"
+  }
+}

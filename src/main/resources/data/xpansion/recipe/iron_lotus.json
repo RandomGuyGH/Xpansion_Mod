@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_sword"
+    },
+    "B": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "AAA",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:iron_lotus"
+  }
+}
