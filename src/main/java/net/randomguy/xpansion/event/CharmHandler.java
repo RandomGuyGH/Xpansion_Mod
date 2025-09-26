@@ -1,16 +1,25 @@
 package net.randomguy.xpansion.event;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.randomguy.xpansion.item.ModItems;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.WeakHashMap;
@@ -25,9 +34,6 @@ public class CharmHandler {
     private static final ResourceLocation MOMENTUM_CHARM_ID =
             ResourceLocation.fromNamespaceAndPath("xpansion", "momentum_charm_boost");
 
-    // ---- Eating Speed Charm ----
-    private static final ResourceLocation FAST_EAT_CHARM_ID =
-            ResourceLocation.fromNamespaceAndPath("xpansion", "fast_eat_charm");
     // ---- Damage Nullify Charm ----
     public static final Map<Player, Double> nullifyChanceMap = new WeakHashMap<>();
     public static final Map<Player, Integer> nullifyEffectTicks = new WeakHashMap<>();
@@ -83,7 +89,23 @@ public class CharmHandler {
                 moveInstance.addTransientModifier(modifier);
             }
         }
+
+        // ---- Silkweaver Charm (repairs tools with Silk) ----
+        if (hasSilkweaverCharmEquipped(player)) {
+            ItemStack held = player.getMainHandItem();
+            if (!held.isEmpty() && held.isDamageableItem() && held.getDamageValue() > 0) {
+                for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                    ItemStack slot = player.getInventory().getItem(i);
+                    if (slot.is(ModItems.LIGHT_SILK.get())) {
+                        slot.shrink(1); // consume 1 silk
+                        held.setDamageValue(Math.max(0, held.getDamageValue() - 1)); // repair 1 durability
+                        break; // only once per tick
+                    }
+                }
+            }
+        }
     }
+
 
     // ---- Damage Nullify Charm ----
     @SubscribeEvent
@@ -103,6 +125,28 @@ public class CharmHandler {
         }
     }
 
+    @SubscribeEvent
+    public static void onPlayerDealDamage(LivingHurtEvent event) {
+        if (event.getSource().getEntity() instanceof Player player) {
+            boolean fragile = hasFragilePowerCharmEquipped(player);
+            boolean enduring = hasEnduringPowerCharmEquipped(player);
+            if (hasBerserkerCharmEquipped(player)) {
+                float maxHealth = player.getMaxHealth();
+                float currentHealth = player.getHealth();
+
+                // 25% HP or lower → damage boost
+                if (currentHealth <= (maxHealth * 0.25f)) {
+                    float boostedDamage = event.getAmount() * 2f; // +50%
+                    event.setAmount(boostedDamage);
+                }
+            }
+            if (fragile || enduring) {
+                float boostedDamage = event.getAmount() * 1.5f; // +50% damage
+                event.setAmount(boostedDamage);
+            }
+        }
+    }
+
     // Damage Reduction Charm: server-side hurt event
     @SubscribeEvent
     public static void onPlayerHurtReduction(LivingHurtEvent event) {
@@ -117,6 +161,59 @@ public class CharmHandler {
         }
     }
 
+    @SubscribeEvent
+    public static void onItemUseStart(LivingEntityUseItemEvent.Start event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+
+        // Check if player has the Fast-Eat Charm equipped
+        if (hasFastEatCharmEquipped(player)) {
+            // Make eating 50% faster
+            int duration = event.getDuration();
+            event.setDuration(Math.max(1, duration / 2));
+        }
+    }
+    @SubscribeEvent
+    public static void onPlayerDeath(LivingDeathEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if (!player.level().isClientSide) {
+                for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+                    ItemStack stack = player.getInventory().getItem(slotIndex);
+                    if (stack.is(ModItems.FRAGILE_STRENGTH.get())) {
+                        player.getInventory().removeItem(slotIndex, 1); // remove the charm
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        Player player = event.getPlayer();
+        if (player == null || player.level().isClientSide) return;
+
+        if (!hasMinerCharmEquipped(player)) return;
+
+        // Check if holding a pickaxe
+        ItemStack held = player.getMainHandItem();
+        if (!(held.getItem() instanceof PickaxeItem)) return;
+
+        BlockState state = event.getState();
+        Block block = state.getBlock();
+        Level level = (Level) event.getLevel();
+        BlockPos pos = event.getPos();
+
+        // Drop original loot
+        List<ItemStack> drops = Block.getDrops(state, (ServerLevel) level, pos, level.getBlockEntity(pos), player, held);
+
+        for (ItemStack drop : drops) {
+            // Extra drop like Fortune I
+            ItemStack extra = drop.copy();
+            if (!extra.isEmpty()) {
+                extra.setCount(1); // only one extra per drop
+                Block.popResource(level, pos, extra);
+            }
+        }
+    }
     private static boolean hasCritCharmEquipped(Player player) {
         for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
             ItemStack stack = player.getInventory().getItem(slotIndex);
@@ -152,6 +249,49 @@ public class CharmHandler {
         for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
             ItemStack stack = player.getInventory().getItem(slotIndex);
             if (stack.is(ModItems.SWIFT_FEATHER.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasFastEatCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.HUNGER_PIT.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasBerserkerCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) { // slots for charms
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.RAGING_SOUL.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasFragilePowerCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.FRAGILE_STRENGTH.get())) return true;
+        }
+        return false;
+    }
+
+    private static boolean hasEnduringPowerCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.ENDURING_STRENGTH.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasMinerCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.GOLDEN_CUP.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasSilkweaverCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.MENDING_SILK.get())) return true;
         }
         return false;
     }

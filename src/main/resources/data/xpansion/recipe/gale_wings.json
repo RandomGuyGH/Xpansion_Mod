@@ -3,18 +3,19 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "xpansion:up_copper_heart"
+      "item": "xpansion:light_silk"
     },
     "B": {
-      "item": "xpansion:down_copper_heart"
+      "item": "minecraft:feather"
     }
   },
   "pattern": [
-    "A",
-    "B"
+    "A A",
+    "BAB",
+    " B "
   ],
   "result": {
     "count": 1,
-    "id": "xpansion:copper_heart"
+    "id": "xpansion:gale_wings"
   }
 }

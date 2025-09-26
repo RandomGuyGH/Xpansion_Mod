@@ -21,9 +21,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CHERRY_BLOSSOM = ITEMS.register("cherry_blossom",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> LEFT_HALF_COPPER_HEART = ITEMS.register("left_copper_heart",
+    public static final RegistryObject<Item> UPPER_HALF_COPPER_HEART = ITEMS.register("up_copper_heart",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> RIGHT_HALF_COPPER_HEART = ITEMS.register("right_copper_heart",
+    public static final RegistryObject<Item> DOWN_HALF_COPPER_HEART = ITEMS.register("down_copper_heart",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> KINECTIC_ROSARIES = ITEMS.register("kinectic_rosaries",
             () -> new Item(new Item.Properties()));
@@ -33,10 +33,26 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LIGHT_SILK = ITEMS.register("light_silk",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SLIGHT_UNSTABLE_IRON = ITEMS.register("slight_unstable_iron",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> UNSTABLE_IRON = ITEMS.register("unstable_iron",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> HIGH_UNSTABLE_IRON = ITEMS.register("high_unstable_iron",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> KINECTITE_DROPS = ITEMS.register("kinectite_drops",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> KINECTITE_SHARD = ITEMS.register("kinectite_shard",
+            () -> new Item(new Item.Properties()));
+
 
 
     public static final RegistryObject<Item> SLIME_INJECTION = ITEMS.register("slime_injection",
             () -> new HeartConsumableItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BOTTLED_VOID = ITEMS.register("bottled_void",
+            () -> new PotionItem(new Item.Properties()
+            )
+    );
+
 
 
 
@@ -127,6 +143,56 @@ public class ModItems {
                         public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
                             pTooltipComponents.add(Component.translatable("tooltip.xpansion.hunger_pit_description"));
                             pTooltipComponents.add(Component.translatable("tooltip.xpansion.hunger_pit_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> RAGING_SOUL =
+            ITEMS.register("raging_soul",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.raging_soul_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.raging_soul_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> FRAGILE_STRENGTH =
+            ITEMS.register("fragile_strength",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.fragile_strength_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.fragile_strength_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> ENDURING_STRENGTH =
+            ITEMS.register("enduring_strength",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.enduring_strength_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.enduring_strength_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> GOLDEN_CUP =
+            ITEMS.register("golden_cup",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.golden_cup_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.golden_cup_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
+    public static final RegistryObject<Item> MENDING_SILK =
+            ITEMS.register("mending_silk",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.mending_silk_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.mending_silk_function"));
                             super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
                         }
                     });

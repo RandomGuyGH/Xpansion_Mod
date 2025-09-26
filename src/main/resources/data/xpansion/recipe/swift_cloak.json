@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "xpansion:light_silk"
+    },
+    "B": {
+      "item": "minecraft:wind_charge"
+    },
+    "C": {
+      "item": "minecraft:black_dye"
+    }
+  },
+  "pattern": [
+    "AAC",
+    "AAA",
+    " AB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:swift_cloak"
+  }
+}

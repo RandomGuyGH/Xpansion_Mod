@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "xpansion:item/right_copper_heart"
+    "layer0": "xpansion:item/swift_feather"
   }
 }

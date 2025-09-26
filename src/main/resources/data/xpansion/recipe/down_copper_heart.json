@@ -3,19 +3,19 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:copper_ingot"
+      "item": "minecraft:iron_ingot"
     },
     "B": {
-      "item": "minecraft:breeze_rod"
+      "item": "minecraft:blaze_rod"
     }
   },
   "pattern": [
-    "AA",
-    "AB",
-    " A"
+    "A A",
+    "ABA",
+    " A "
   ],
   "result": {
     "count": 1,
-    "id": "xpansion:left_copper_heart"
+    "id": "xpansion:right_copper_heart"
   }
 }

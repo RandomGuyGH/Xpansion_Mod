@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 1000,
+  "experience": 1,
+  "group": "kinectite",
+  "ingredient": {
+    "item": "xpansion:kinectite_drops"
+  },
+  "result": {
+    "id": "xpansion:kinectite_shard"
+  }
+}
