@@ -49,7 +49,7 @@
   "tooltip.xpansion.hunger_pit_function": "The bearer's eating speed is increased.",
   "item.xpansion.raging_soul": "Raging Soul",
   "tooltip.xpansion.raging_soul_description": "A floating metal orb with blue flames leaving it.",
-  "tooltip.xpansion.raging_soul_function": "The bearer's damage is increase on low health.",
+  "tooltip.xpansion.raging_soul_function": "The bearer's damage is increased on low health.",
   "item.xpansion.fragile_strength": "Fragile Strength",
   "tooltip.xpansion.fragile_strength_description": "A glass disk with a claw imprinted to it.",
   "tooltip.xpansion.fragile_strength_function": "The bearer's strength is increased, but the charm breaks after the bearer is killed.",
@@ -62,6 +62,9 @@
   "item.xpansion.mending_silk": "Mending Silk",
   "tooltip.xpansion.mending_silk_description": "A totem of a spider with a roll of silk connected to it.",
   "tooltip.xpansion.mending_silk_function": "Consumes silk to repair the toll the bearer is holding.",
+  "item.xpansion.void_skull": "Void Skull",
+  "tooltip.xpansion.void_skull_description": "A black skull with void leaking from it, the sludge tangles with your hand.",
+  "tooltip.xpansion.void_skull_function": "The strength and speed of the bearer is greatly increased, but he takes double damage.",
 
 
   "creativetab.xpansion.xpansion_blocks": "Xpansion Building Blocks",

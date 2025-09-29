@@ -3,19 +3,18 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "xpansion:cherry_blossom"
+      "item": "xpansion:wither_skeleton_skull"
     },
     "B": {
-      "item": "minecraft:paper"
+      "item": "xpansion:bottled_void"
     }
   },
   "pattern": [
-    "AAA",
-    "AAA",
-    "BBB"
+    "AB",
+    "BB"
   ],
   "result": {
     "count": 1,
-    "id": "xpansion:cherry_bouquet"
+    "id": "xpansion:void_skull"
   }
 }

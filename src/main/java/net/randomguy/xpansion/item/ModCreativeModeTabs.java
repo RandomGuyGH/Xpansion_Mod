@@ -92,6 +92,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.COPPER_HEART.get());
                         output.accept(ModItems.MENDING_SILK.get());
                         output.accept(ModItems.GOLDEN_CUP.get());
+                        output.accept(ModItems.VOID_SKULL.get());
                         output.accept(ModItems.RAGING_SOUL.get());
                         output.accept(ModItems.QUICK_FEET.get());
                         output.accept(ModItems.SWIFT_FEATHER.get());

@@ -33,14 +33,15 @@ public class CharmHandler {
 
     private static final ResourceLocation MOMENTUM_CHARM_ID =
             ResourceLocation.fromNamespaceAndPath("xpansion", "momentum_charm_boost");
+    private static final ResourceLocation RISKY_POWER_CHARM_SPEED_ID =
+            ResourceLocation.fromNamespaceAndPath("xpansion", "risky_power_speed_boost");
+    private static final ResourceLocation RISKY_POWER_CHARM_DAMAGE_ID =
+            ResourceLocation.fromNamespaceAndPath("xpansion", "risky_power_damage_boost");
 
     // ---- Damage Nullify Charm ----
     public static final Map<Player, Double> nullifyChanceMap = new WeakHashMap<>();
     public static final Map<Player, Integer> nullifyEffectTicks = new WeakHashMap<>();
     private static final Random random = new Random();
-
-    // ---- Momentum Charm ----
-    // No need to track gradual speed anymore
 
     // ---- Player tick event ----
     @SubscribeEvent
@@ -97,31 +98,64 @@ public class CharmHandler {
                 for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                     ItemStack slot = player.getInventory().getItem(i);
                     if (slot.is(ModItems.LIGHT_SILK.get())) {
-                        slot.shrink(1); // consume 1 silk
+                        slot.shrink(3); // consume 1 silk
                         held.setDamageValue(Math.max(0, held.getDamageValue() - 1)); // repair 1 durability
                         break; // only once per tick
                     }
                 }
             }
         }
+        // ---- Risky Power Charm (+75% speed, +75% attack damage, double damage taken) ----
+        boolean hasRiskyCharm = hasRiskyPowerCharmEquipped(player);
+
+        var riskySpeedInstance = attributes.getInstance(Attributes.MOVEMENT_SPEED);
+        if (riskySpeedInstance != null) {
+            riskySpeedInstance.removeModifier(RISKY_POWER_CHARM_SPEED_ID);
+            if (hasRiskyCharm) {
+                var modifier = new AttributeModifier(
+                        RISKY_POWER_CHARM_SPEED_ID,
+                        0.75,
+                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                );
+                riskySpeedInstance.addTransientModifier(modifier);
+            }
+        }
+
+        var riskyDamageInstance = attributes.getInstance(Attributes.ATTACK_DAMAGE);
+        if (riskyDamageInstance != null) {
+            riskyDamageInstance.removeModifier(RISKY_POWER_CHARM_DAMAGE_ID);
+            if (hasRiskyCharm) {
+                var modifier = new AttributeModifier(
+                        RISKY_POWER_CHARM_DAMAGE_ID,
+                        0.75,
+                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                );
+                riskyDamageInstance.addTransientModifier(modifier);
+            }
+        }
     }
 
 
-    // ---- Damage Nullify Charm ----
+
     @SubscribeEvent
     public static void onPlayerHurt(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
         if (player.level().isClientSide) return;
 
-        if (!hasNullifyCharmEquipped(player)) return;
+        if (hasNullifyCharmEquipped(player)) {
 
-        double chance = nullifyChanceMap.getOrDefault(player, 0.1); // start at 10%
-        if (random.nextDouble() < chance) {
-            event.setCanceled(true);
-            nullifyChanceMap.put(player, 0.1); // reset chance
-            nullifyEffectTicks.put(player, 10); // 10 ticks flash
-        } else {
-            nullifyChanceMap.put(player, Math.min(1.0, chance + 0.1));
+            double chance = nullifyChanceMap.getOrDefault(player, 0.1); // start at 10%
+            if (random.nextDouble() < chance) {
+                event.setCanceled(true);
+                nullifyChanceMap.put(player, 0.1); // reset chance
+                nullifyEffectTicks.put(player, 10); // 10 ticks flash
+            } else {
+                nullifyChanceMap.put(player, Math.min(1.0, chance + 0.1));
+            }
+        }
+        // Risky Power Charm → double damage taken
+        if (hasRiskyPowerCharmEquipped(player)) {
+            event.setAmount(event.getAmount() * 2f);
         }
     }
 
@@ -295,5 +329,11 @@ public class CharmHandler {
         }
         return false;
     }
-
+    private static boolean hasRiskyPowerCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.VOID_SKULL.get())) return true; // example item
+        }
+        return false;
+    }
 }

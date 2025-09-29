@@ -3,19 +3,19 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "xpansion:cherry_blossom"
+      "item": "xpansion:fragile_strength"
     },
     "B": {
-      "item": "minecraft:paper"
+      "item": "minecraft:diamond"
     }
   },
   "pattern": [
-    "AAA",
-    "AAA",
-    "BBB"
+    " B ",
+    "BAB",
+    " B "
   ],
   "result": {
     "count": 1,
-    "id": "xpansion:cherry_bouquet"
+    "id": "xpansion:enduring_strength"
   }
 }

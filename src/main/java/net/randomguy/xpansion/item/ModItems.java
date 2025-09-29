@@ -196,6 +196,16 @@ public class ModItems {
                             super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
                         }
                     });
+    public static final RegistryObject<Item> VOID_SKULL =
+            ITEMS.register("void_skull",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.void_skull_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.void_skull_function"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:spider_eye"
+    },
+    "B": {
+      "item": "xpansion:light_silk"
+    },
+    "C": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "CB ",
+    "CB "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:mending_silk"
+  }
+}
