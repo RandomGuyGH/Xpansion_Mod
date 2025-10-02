@@ -86,18 +86,30 @@ public class ModCreativeModeTabs {
                     .withTabsBefore(XPANSION_WEAPONS_TAB.getId())
                     .title(Component.translatable("creativetab.xpansion.xpansion_charms"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.HUNGER_PIT.get());
-                        output.accept(ModItems.CHERRY_BOUQUET.get());
                         output.accept(ModItems.IRON_LOTUS.get());
-                        output.accept(ModItems.COPPER_HEART.get());
-                        output.accept(ModItems.MENDING_SILK.get());
-                        output.accept(ModItems.GOLDEN_CUP.get());
-                        output.accept(ModItems.VOID_SKULL.get());
                         output.accept(ModItems.RAGING_SOUL.get());
-                        output.accept(ModItems.QUICK_FEET.get());
-                        output.accept(ModItems.SWIFT_FEATHER.get());
+                        output.accept(ModItems.BLAZEFLINT.get());
+                        output.accept(ModItems.THIRD_EYE_BAND.get());
                         output.accept(ModItems.FRAGILE_STRENGTH.get());
                         output.accept(ModItems.ENDURING_STRENGTH.get());
+                        output.accept(ModItems.VOID_SKULL.get());
+                        output.accept(ModItems.QUICK_FEET.get());
+                        output.accept(ModItems.TOTEM_OF_SCURRY.get());
+                        output.accept(ModItems.SWIFT_FEATHER.get());
+                        output.accept(ModItems.STORM_COMPASS.get());
+                        output.accept(ModItems.EXPLOSIVE_PROPULSOR.get());
+                        output.accept(ModItems.COPPER_HEART.get());
+                        output.accept(ModItems.CHERRY_BOUQUET.get());
+                        output.accept(ModItems.BLAZING_AMBER.get());
+                        output.accept(ModItems.HUNTER_MASK.get());
+                        output.accept(ModItems.RING_MAGNET.get());
+                        output.accept(ModItems.GOLDEN_CUP.get());
+                        output.accept(ModItems.MENDING_SILK.get());
+                        output.accept(ModItems.HUNGER_PIT.get());
+                        output.accept(ModItems.CORAL_CROWN.get());
+                        output.accept(ModItems.TOTEM_OF_LEECHING.get());
+                        output.accept(ModItems.TOTEM_OF_WITHERING.get());
+                        output.accept(ModItems.ANCIENT_TOTEM.get());
                     })
 
                     .build());

@@ -18,6 +18,7 @@
   "item.xpansion.slime_injection": "Slime Injection",
   "item.xpansion.bottled_void.effect.empty": "Bottled Void",
 
+  "tooltip.xpansion.accolade": "Place this item in your 6th slot to use its ability.",
   "item.xpansion.swift_cloak": "Swift Cloak",
   "tooltip.xpansion.swift_cloak_description": "A dark cloak that pushes wind with an extreme force.",
   "tooltip.xpansion.swift_cloak_function": "Press Space to dash in the direction you are facing.",
@@ -29,43 +30,108 @@
   "tooltip.xpansion.gale_wings_function": "Press Space to make a super jump.",
 
 
+  "tooltip.xpansion.charm": "Place this item in your 7th, 8th or 9th slot to receive its effects.",
+
   "item.xpansion.iron_lotus": "Iron Lotus",
   "tooltip.xpansion.iron_lotus_description": "A union of discarded swords, now forming a bright flower.",
   "tooltip.xpansion.iron_lotus_function": "Grants the bearer the ability to strike stronger attacks quicker.",
-  "item.xpansion.cherry_bouquet": "Cherry Bouquet",
-  "tooltip.xpansion.cherry_bouquet_description": "A pretty bouquet with shining petals.",
-  "tooltip.xpansion.cherry_bouquet_function": "Makes so that the bearer has a chance of not taking damage, increasing that chance after taking damage and resetting after not.",
-  "item.xpansion.copper_heart": "Copper Heart",
-  "tooltip.xpansion.copper_heart_description": "Two halves of a heart, now together and fully functional.",
-  "tooltip.xpansion.copper_heart_function": "Makes the bearer tougher after taking great injuries.",
-  "item.xpansion.quick_feet": "Quick Feet",
-  "tooltip.xpansion.quick_feet_description": "A homemade charm resembling a small boot.",
-  "tooltip.xpansion.quick_feet_function": "Increases the bearer speed.",
-  "item.xpansion.swift_feather": "Swift Feather",
-  "tooltip.xpansion.swift_feather_description": "A black feather that seems to move on its own.",
-  "tooltip.xpansion.swift_feather_function": "Makes the bearer's cloak propulsion have a shorter cooldown.",
-  "item.xpansion.hunger_pit": "Hunger Pit",
-  "tooltip.xpansion.hunger_pit_description": "A living organism that is always needing to eat.",
-  "tooltip.xpansion.hunger_pit_function": "The bearer's eating speed is increased.",
+
   "item.xpansion.raging_soul": "Raging Soul",
-  "tooltip.xpansion.raging_soul_description": "A floating metal orb with blue flames leaving it.",
+  "tooltip.xpansion.raging_soul_description": "A floating golden orb with blue flames leaving it.",
   "tooltip.xpansion.raging_soul_function": "The bearer's damage is increased on low health.",
+
+  "item.xpansion.blazeflint": "Blazeflint",
+  "tooltip.xpansion.blazeflint_description": "A black rock shining with burning colors.",
+  "tooltip.xpansion.blazeflint_function": "With every other hit, the bearer deals extra damage and sets the target on fire.",
+
+  "item.xpansion.third_eye_band": "Third Eye Band",
+  "tooltip.xpansion.third_eye_band_description": "A black band that occludes almost all light.",
+  "tooltip.xpansion.third_eye_band_function": "The bearer receives blindness, but is able to deal massive damage.",
+
   "item.xpansion.fragile_strength": "Fragile Strength",
   "tooltip.xpansion.fragile_strength_description": "A glass disk with a claw imprinted to it.",
   "tooltip.xpansion.fragile_strength_function": "The bearer's strength is increased, but the charm breaks after the bearer is killed.",
+
   "item.xpansion.enduring_strength": "Enduring Strength",
   "tooltip.xpansion.enduring_strength_description": "A disk made of diamond with a claw imprinted on it.",
   "tooltip.xpansion.enduring_strength_function": "The bearer's strength is increased.",
-  "item.xpansion.golden_cup": "Shining Cup",
-  "tooltip.xpansion.golden_cup_description": "A golden cup ornamented with multiple gems.",
-  "tooltip.xpansion.golden_cup_function": "Increases the drops of pickaxes by one.",
-  "item.xpansion.mending_silk": "Mending Silk",
-  "tooltip.xpansion.mending_silk_description": "A totem of a spider with a roll of silk connected to it.",
-  "tooltip.xpansion.mending_silk_function": "Consumes silk to repair the toll the bearer is holding.",
+
   "item.xpansion.void_skull": "Void Skull",
   "tooltip.xpansion.void_skull_description": "A black skull with void leaking from it, the sludge tangles with your hand.",
   "tooltip.xpansion.void_skull_function": "The strength and speed of the bearer is greatly increased, but he takes double damage.",
 
+  "item.xpansion.quick_feet": "Quick Feet",
+  "tooltip.xpansion.quick_feet_description": "A homemade charm resembling a small boot.",
+  "tooltip.xpansion.quick_feet_function": "Increases the bearer speed.",
+
+  "item.xpansion.totem_of_scurry": "Totem of Scurry",
+  "tooltip.xpansion.totem_of_scurry_description": "A totem that carries the scared spirit of a rat.",
+  "tooltip.xpansion.totem_of_scurry_function": "The bearer gets an increased speed after taking damage.",
+
+  "item.xpansion.swift_feather": "Swift Feather",
+  "tooltip.xpansion.swift_feather_description": "A black feather that seems to move on its own.",
+  "tooltip.xpansion.swift_feather_function": "Makes the bearer's cloak propulsion have a shorter cooldown.",
+
+  "item.xpansion.storm_compass": "Storm Compass",
+  "tooltip.xpansion.storm_compass_description": "A compass that can manipulate the wind blowing around it.",
+  "tooltip.xpansion.storm_compass_function": "Makes the bearer's cloak be able to dash in any direction.",
+
+  "item.xpansion.explosive_propulsor": "Explosive Propulsor",
+  "tooltip.xpansion.explosive_propulsor_description": "An mechanical structure that converts gunpowder in thrust.",
+  "tooltip.xpansion.explosive_propulsor_function": "The bearer consumes 2 gunpowder to make its wings fly higher.",
+
+  "item.xpansion.copper_heart": "Copper Heart",
+  "tooltip.xpansion.copper_heart_description": "Two halves of a heart, now together and fully functional.",
+  "tooltip.xpansion.copper_heart_function": "Makes the bearer tougher after taking great injuries.",
+
+  "item.xpansion.cherry_bouquet": "Cherry Bouquet",
+  "tooltip.xpansion.cherry_bouquet_description": "A pretty bouquet with shining petals.",
+  "tooltip.xpansion.cherry_bouquet_function": "Makes so that the bearer has a chance of not taking damage, increasing that chance after taking damage and resetting after not.",
+
+  "item.xpansion.blazing_amber": "Blazing Amber",
+  "tooltip.xpansion.blazing_amber_description": "A blazing gem that generates heat, it seems that it cannot be melted by lava.",
+  "tooltip.xpansion.blazing_amber_function": "Makes the bearer immune to fire damage for 5 seconds, with an 8 second cooldown after that.",
+
+  "item.xpansion.hunter_mask": "Hunter's Mask",
+  "tooltip.xpansion.hunter_mask_description": "A grey mask that was used by one of the greatest hunter in history.",
+  "tooltip.xpansion.hunter_mask_function": "Makes the bearer invisible when sprinting.",
+
+  "item.xpansion.ring_magnet": "Ring Magnet",
+  "tooltip.xpansion.ring_magnet_description": "A necklace that holds a red metal plate, it seems to attract other items to it.",
+  "tooltip.xpansion.ring_magnet_function": "Dropped items can be pulled to the bearer from farther.",
+
+  "item.xpansion.golden_cup": "Shining Cup",
+  "tooltip.xpansion.golden_cup_description": "A golden cup ornamented with multiple gems.",
+  "tooltip.xpansion.golden_cup_function": "Increases the drops of pickaxes by one.",
+
+  "item.xpansion.mending_silk": "Mending Silk",
+  "tooltip.xpansion.mending_silk_description": "A totem of a spider with a roll of silk connected to it.",
+  "tooltip.xpansion.mending_silk_function": "Consumes silk to repair the toll the bearer is holding.",
+
+  "item.xpansion.hunger_pit": "Hunger Pit",
+  "tooltip.xpansion.hunger_pit_description": "A living organism that is always needing to eat.",
+  "tooltip.xpansion.hunger_pit_function": "The bearer's eating speed is increased.",
+
+  "item.xpansion.coral_crown": "Coral Crown",
+  "tooltip.xpansion.coral_crown_description": "An ancient crown lost thousands of years ago, rumors said that this belonged to an ancient civilization.",
+  "tooltip.xpansion.coral_crown_function": "The bearer can breathe and swim faster underwater.",
+
+  "item.xpansion.totem_of_leeching": "Totem of Leeching",
+  "tooltip.xpansion.totem_of_leeching_description": "A golden statue resembling a leech.",
+  "tooltip.xpansion.totem_of_leeching_function": "The bearer can suck the living force out of targets, healing itself in the process.",
+
+  "item.xpansion.totem_of_withering": "Totem of Withering",
+  "tooltip.xpansion.totem_of_withering_description": "A black totem that seems to corrupt everything around it.",
+  "tooltip.xpansion.totem_of_withering_function": "The bearer deals withering damage to targets.",
+
+  "item.xpansion.ancient_totem": "Ancient Totem",
+  "tooltip.xpansion.ancient_totem_description": "A wooden totem with a weird creature depicted, legends said that this totem came from space.",
+  "tooltip.xpansion.ancient_totem_function": "Grants a slow falling effect to the bearer.",
+
+
+
+  "item.xpansion.wind_music_disc": "Bar Brawl Music Disc",
+  "item.xpansion.wind_music_disc.desc": "Wind (Slime Rancher 2) - Harry Mack",
 
   "creativetab.xpansion.xpansion_blocks": "Xpansion Building Blocks",
   "creativetab.xpansion.xpansion_ingredients": "Xpansion Ingredients",

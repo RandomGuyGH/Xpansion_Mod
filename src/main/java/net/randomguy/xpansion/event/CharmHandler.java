@@ -1,12 +1,18 @@
 package net.randomguy.xpansion.event;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +24,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.randomguy.xpansion.item.ModItems;
+
 
 import java.util.List;
 import java.util.Map;
@@ -37,11 +44,18 @@ public class CharmHandler {
             ResourceLocation.fromNamespaceAndPath("xpansion", "risky_power_speed_boost");
     private static final ResourceLocation RISKY_POWER_CHARM_DAMAGE_ID =
             ResourceLocation.fromNamespaceAndPath("xpansion", "risky_power_damage_boost");
+    private static final ResourceLocation RAGE_SPEED_CHARM_ID =
+            ResourceLocation.fromNamespaceAndPath("xpansion", "rage_speed_charm");
+    private static final ResourceLocation SPRINT_INVIS_CHARM_ID =
+            ResourceLocation.fromNamespaceAndPath("xpansion", "sprint_invis_charm");
+
 
     // ---- Damage Nullify Charm ----
     public static final Map<Player, Double> nullifyChanceMap = new WeakHashMap<>();
     public static final Map<Player, Integer> nullifyEffectTicks = new WeakHashMap<>();
     private static final Random random = new Random();
+    private static final Map<Player, Integer> rageSpeedTicks = new WeakHashMap<>();
+    private static final Map<Player, Integer> blazeflintHitCount = new WeakHashMap<>();
 
     // ---- Player tick event ----
     @SubscribeEvent
@@ -133,6 +147,73 @@ public class CharmHandler {
                 riskyDamageInstance.addTransientModifier(modifier);
             }
         }
+        if (hasOceanCharmEquipped(player)) {
+            if (player.isInWaterOrBubble()) {
+                // Water breathing
+                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 20, 0, true, false, false));
+
+                // Speed boost while underwater
+                var moveInstances = attributes.getInstance(Attributes.MOVEMENT_SPEED);
+                if (moveInstances != null) {
+                    var modifier = new AttributeModifier(
+                            ResourceLocation.fromNamespaceAndPath("xpansion", "ocean_charm_speed"),
+                            0.5, // +30% speed underwater
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    );
+
+                    if (!moveInstances.hasModifier(modifier.id())) {
+                        moveInstances.addTransientModifier(modifier);
+                    }
+                }
+            } else {
+                // Remove modifier when not underwater
+                var moveInstances = attributes.getInstance(Attributes.MOVEMENT_SPEED);
+                if (moveInstances != null) {
+                    moveInstances.removeModifier(ResourceLocation.fromNamespaceAndPath("xpansion", "ocean_charm_speed"));
+                }
+            }
+        } else {
+            // If charm not equipped, ensure modifier is cleared
+            var moveInstances = attributes.getInstance(Attributes.MOVEMENT_SPEED);
+            if (moveInstances != null) {
+                moveInstances.removeModifier(ResourceLocation.fromNamespaceAndPath("xpansion", "ocean_charm_speed"));
+            }
+        }
+        // Fire Amber Charm //
+        if (hasFireAmberEquipped(player)) {
+            int cooldown = player.getPersistentData().getInt("FireTalismanCooldown");
+            int active   = player.getPersistentData().getInt("FireTalismanActive");
+
+            if (cooldown > 0) {
+                player.getPersistentData().putInt("FireTalismanCooldown", cooldown - 1);
+            }
+
+            if (active > 0) {
+                player.getPersistentData().putInt("FireTalismanActive", active - 1);
+
+                // give fire resistance effect
+                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 0, false, false, true));
+            }
+
+            // trigger only when first touching fire/lava
+            if (player.isOnFire() || player.isInLava()) {
+                if (cooldown <= 0 && active <= 0) {
+                    // activate fire immunity
+                    player.getPersistentData().putInt("FireTalismanActive", 20 * 5); // 5s
+                    player.getPersistentData().putInt("FireTalismanCooldown", 20 * 13); // 8s
+                }
+            }
+        }
+        // Check if the player has the Blindness Charm equipped
+        if (hasBlindnessCurseCharmEquipped(player)) {
+            // Apply Blindness continuously (10 seconds, refreshed each tick)
+            player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, false));
+        } else {
+            // Remove effect if the charm is removed
+            if (player.hasEffect(MobEffects.BLINDNESS)) {
+                player.removeEffect(MobEffects.BLINDNESS);
+            }
+        }
     }
 
 
@@ -170,16 +251,63 @@ public class CharmHandler {
 
                 // 25% HP or lower → damage boost
                 if (currentHealth <= (maxHealth * 0.25f)) {
-                    float boostedDamage = event.getAmount() * 2f; // +50%
+                    float boostedDamage = event.getAmount() * 1.65f;
                     event.setAmount(boostedDamage);
                 }
             }
             if (fragile || enduring) {
-                float boostedDamage = event.getAmount() * 1.5f; // +50% damage
+                float boostedDamage = event.getAmount() * 1.4f;
                 event.setAmount(boostedDamage);
             }
+            if (hasLifeLeechCharmEquipped(player)) {
+                float leechAmount = event.getAmount() * 0.4f;
+                player.heal(leechAmount);
+            }
+            if (hasBlindnessCurseCharmEquipped(player)) {
+                float boostedDamage = event.getAmount() * 2f;
+                event.setAmount(boostedDamage);
+            }
+
         }
     }
+
+    @SubscribeEvent
+    public static void onPlayerDamaged(LivingHurtEvent event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (player.level().isClientSide) return;
+
+        if (hasRageCharmEquipped(player)) {
+            rageSpeedTicks.put(player, 60); // 10 seconds (200 ticks) of speed
+        }
+    }
+    @SubscribeEvent
+    public static void onPlayerTickRage(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        Player player = event.player;
+        if (player.level().isClientSide) return;
+
+        var moveInstance = player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED);
+        if (moveInstance == null) return;
+
+        int ticks = rageSpeedTicks.getOrDefault(player, 0);
+
+        if (ticks > 0) {
+            rageSpeedTicks.put(player, ticks - 1);
+
+            var modifier = new AttributeModifier(
+                    RAGE_SPEED_CHARM_ID,
+                    0.5, // +50% movement speed
+                    AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            );
+
+            if (!moveInstance.hasModifier(RAGE_SPEED_CHARM_ID)) {
+                moveInstance.addTransientModifier(modifier);
+            }
+        } else {
+            moveInstance.removeModifier(RAGE_SPEED_CHARM_ID);
+        }
+    }
+
 
     // Damage Reduction Charm: server-side hurt event
     @SubscribeEvent
@@ -247,6 +375,114 @@ public class CharmHandler {
                 Block.popResource(level, pos, extra);
             }
         }
+    }
+    @SubscribeEvent
+    public static void onPlayerTickSprint(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        Player player = event.player;
+        if (player.level().isClientSide) return;
+
+        if (!hasSprintInvisCharmEquipped(player)) return;
+
+        // Check if sprinting
+        boolean sprinting = player.isSprinting();
+
+        if (sprinting) {
+            if (!player.hasEffect(MobEffects.INVISIBILITY)) {
+                player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 210, 0, false, false));
+                // 210 ticks so it doesn't immediately disappear; we'll refresh every tick
+            }
+        } else {
+            // Remove invisibility if not sprinting
+            if (player.hasEffect(MobEffects.INVISIBILITY)) {
+                player.removeEffect(MobEffects.INVISIBILITY);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTickMagnet(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        Player player = event.player;
+        if (player.level().isClientSide) return;
+
+        if (!hasMagnetCharmEquipped(player)) return;
+
+        double radius = 8.0; // normal pickup is ~2 blocks, so this is a boost
+        var items = player.level().getEntitiesOfClass(
+                net.minecraft.world.entity.item.ItemEntity.class,
+                player.getBoundingBox().inflate(radius)
+        );
+
+        for (var item : items) {
+            if (item.isAlive() && !item.hasPickUpDelay()) {
+                // Pull items toward the player
+                double dx = player.getX() - item.getX();
+                double dy = player.getY() + 1.0 - item.getY();
+                double dz = player.getZ() - item.getZ();
+                double dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+
+                if (dist < radius && dist > 0.25) {
+                    double strength = 0.05; // how strong the pull is
+                    item.setDeltaMovement(
+                            item.getDeltaMovement().add(
+                                    dx / dist * strength,
+                                    dy / dist * strength,
+                                    dz / dist * strength
+                            )
+                    );
+                }
+            }
+        }
+    }
+    // Withering Charm: applies Wither to target when attacked
+    @SubscribeEvent
+    public static void onPlayerAttackWither(LivingHurtEvent event) {
+        if (!(event.getSource().getEntity() instanceof Player player)) return;
+        if (player.level().isClientSide) return;
+
+        // Check if player has the Withering Charm equipped in slots 6-8
+        if (!hasWitheringCharmEquipped(player)) return;
+
+        // Only apply to living entities (exclude things like armor stands)
+        if (event.getEntity() instanceof LivingEntity target) {
+            // Apply Wither effect: duration 5 seconds (100 ticks), amplifier 1
+            target.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 1));
+        }
+    }
+    // Slow Falling Charm: gives Slow Falling while equipped
+    @SubscribeEvent
+    public static void onPlayerTickSlowFalling(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+
+        Player player = event.player;
+        if (player.level().isClientSide) return;
+
+        // Check if player has the Slow Falling Charm equipped
+        if (hasSlowFallingCharmEquipped(player)) {
+            // Apply Slow Falling: duration 2 ticks, amplifier 0
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 2, 0, false, false));
+        }
+    }
+    // ---- Hurt Event ----
+    @SubscribeEvent
+    public static void onPlayerAttack(LivingHurtEvent event) {
+        if (!(event.getSource().getEntity() instanceof Player player)) return;
+        if (player.level().isClientSide) return;
+
+        if (!hasBlazeflintCharmEquipped(player)) return;
+
+        // Increment hit count for player
+        int count = blazeflintHitCount.getOrDefault(player, 0) + 1;
+
+        if (count >= 2) {
+            // Apply bonus on every 2nd hit
+            event.setAmount(event.getAmount() * 1.1f); // +10% damage
+            event.getEntity().igniteForSeconds(2); // set target on fire
+            count = 0; // reset after bonus
+        }
+
+        blazeflintHitCount.put(player, count);
     }
     private static boolean hasCritCharmEquipped(Player player) {
         for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
@@ -333,6 +569,91 @@ public class CharmHandler {
         for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
             ItemStack stack = player.getInventory().getItem(slotIndex);
             if (stack.is(ModItems.VOID_SKULL.get())) return true; // example item
+        }
+        return false;
+    }
+    static boolean hasDirectionalCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.STORM_COMPASS.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasRageCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.TOTEM_OF_SCURRY.get())) return true; // <- replace with your charm item
+        }
+        return false;
+    }
+    private static boolean hasSprintInvisCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.HUNTER_MASK.get())) return true; // <- replace with your charm item
+        }
+        return false;
+    }
+    private static boolean hasMagnetCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.RING_MAGNET.get())) return true; // your custom charm item
+        }
+        return false;
+    }
+    private static boolean hasLifeLeechCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.TOTEM_OF_LEECHING.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasWitheringCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.TOTEM_OF_WITHERING.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasSlowFallingCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.ANCIENT_TOTEM.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasOceanCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.CORAL_CROWN.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasBlazeflintCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.BLAZEFLINT.get())) return true;
+        }
+        return false;
+    }
+    static boolean hasExplosivePropulsorCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.EXPLOSIVE_PROPULSOR.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasFireAmberEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.BLAZING_AMBER.get())) return true;
+        }
+        return false;
+    }
+    // ---- Helper method ----
+    private static boolean hasBlindnessCurseCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.THIRD_EYE_BAND.get())) return true;
         }
         return false;
     }

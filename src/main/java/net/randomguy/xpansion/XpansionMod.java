@@ -1,10 +1,6 @@
 package net.randomguy.xpansion;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -21,7 +17,6 @@ import net.randomguy.xpansion.block.ModBlocks;
 import net.randomguy.xpansion.item.ModCreativeModeTabs;
 import net.randomguy.xpansion.item.ModItems;
 import org.slf4j.Logger;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 
 // The value here should match an entry in the META-INF/mods.toml file

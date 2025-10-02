@@ -12,6 +12,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.randomguy.xpansion.item.ModItems;
+import net.randomguy.xpansion.event.CharmHandler;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class AccoladeHandler {
 
     // JUMP BOOST SETTINGS
     private static final int JUMPBOOST_COOLDOWN_TICKS = 60; // 3 seconds
-    private static final double JUMPBOOST_STRENGTH = 0.8;
+    private static final double JUMPBOOST_STRENGTH = 0.5;
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.ClientTickEvent event) {
@@ -53,14 +54,35 @@ public class AccoladeHandler {
             boolean dashReady = player.getPersistentData().getBoolean("AccoladeDashReady");
 
             if (pressingJump && !dashReady && cooldown <= 0) {
-                // forward dash
+                /// --- compute movement direction from WASD input and yaw ---
+                float forward = (player.input.up ? 1 : 0) - (player.input.down ? 1 : 0);   // W = +1, S = -1
+                float strafe = (player.input.left ? 1 : 0) - (player.input.right ? 1 : 0); // A = +1, D = -1  (fixed)
+
+// world-space conversion using yaw
+                double dx, dz;
+
+                if (forward == 0 && strafe == 0) {
+                    // fallback to look direction if no movement keys pressed
+                    dx = player.getLookAngle().x;
+                    dz = player.getLookAngle().z;
+                } else {
+                    double yaw = Math.toRadians(player.getYRot());
+
+                    dx = forward * -Math.sin(yaw) + strafe * Math.cos(yaw);
+                    dz = forward * Math.cos(yaw) + strafe * Math.sin(yaw);
+
+                    double len = Math.sqrt(dx * dx + dz * dz);
+                    if (len > 0.0001) {
+                        dx /= len;
+                        dz /= len;
+                    }
+                }
+
+// Apply dash
                 player.setDeltaMovement(
-                        player.getDeltaMovement().add(
-                                player.getLookAngle().x * DASH_STRENGTH,
-                                0,
-                                player.getLookAngle().z * DASH_STRENGTH
-                        )
+                        player.getDeltaMovement().add(dx * DASH_STRENGTH, 0, dz * DASH_STRENGTH)
                 );
+
 
                 player.level().levelEvent(2001, player.blockPosition(), 0);
 
@@ -78,9 +100,14 @@ public class AccoladeHandler {
             if (!pressingJump) {
                 player.getPersistentData().putBoolean("AccoladeDashReady", false);
             }
+
+            if (!pressingJump) {
+                player.getPersistentData().putBoolean("AccoladeDashReady", false);
+            }
         }
 
-        // =============================
+
+// =============================
 // JUMP ACCOLADE (Jump Boost)
 // =============================
         if (slot6.is(ModItems.GALE_WINGS.get())) {
@@ -98,10 +125,25 @@ public class AccoladeHandler {
             boolean jumpReady = player.getPersistentData().getBoolean("AccoladeJumpReady");
 
             if (pressingJump && !jumpReady && cooldown <= 0) {
-                // upward boost
+                double boostStrength = JUMPBOOST_STRENGTH; // default boost
+
+                // =============================
+                // Use helper from CharmHandler
+                // =============================
+                if (CharmHandler.hasExplosivePropulsorCharmEquipped(player)) {
+                    for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                        ItemStack slot = player.getInventory().getItem(i);
+                        if (slot.is(net.minecraft.world.item.Items.GUNPOWDER)) {
+                            slot.shrink(2); // consume 1 silk
+                            boostStrength = 1.0;
+                        }
+                    }
+                }
+
+                // apply boost
                 player.setDeltaMovement(
                         player.getDeltaMovement().x,
-                        player.getDeltaMovement().y + JUMPBOOST_STRENGTH,
+                        player.getDeltaMovement().y + boostStrength,
                         player.getDeltaMovement().z
                 );
 
@@ -109,7 +151,6 @@ public class AccoladeHandler {
 
                 player.getPersistentData().putBoolean("AccoladeJumpReady", true);
                 player.getPersistentData().putInt("AccoladeJumpCooldown", JUMPBOOST_COOLDOWN_TICKS);
-
             }
 
             if (!pressingJump) {
@@ -119,4 +160,3 @@ public class AccoladeHandler {
 
     }
 }
-
