@@ -105,6 +105,11 @@ public class ModEvents {
                 new ItemStack(ModItems.FRAGILE_STRENGTH.get(), 1),
                 5, 10, 0.05f
         ));
+        event.getGenericTrades().add((trader, rand) -> new MerchantOffer(
+                new ItemCost(Items.EMERALD, 3),
+                new ItemStack(ModItems.CHERRY_BLOSSOM.get(), 5),
+                5, 10, 0.05f
+        ));
 
         // Add custom rare trade
         event.getRareTrades().add((trader, rand) -> new MerchantOffer(
