@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:red_dye"
+    },
+    "B": {
+      "item": "minecraft:pink_dye"
+    },
+    "C": {
+      "item": "minecraft:light_blue_dye"
+    },
+    "D": {
+      "item": "minecraft:emerald"
+    },
+    "E": {
+      "item": "xpansion:strange_crystal"
+    }
+  },
+  "pattern": [
+    " A ",
+    "BEC",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:reach_music_disc"
+  }
+}

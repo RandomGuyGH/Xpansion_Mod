@@ -1,0 +1,106 @@
+{
+  "music.wind": {
+    "sounds": [
+      {
+        "name": "xpansion:music/wind",
+        "stream": true
+      }
+    ]
+  },
+  "music.enter_hallownest": {
+    "sounds": [
+      {
+        "name": "xpansion:music/enter_hallownest",
+        "stream": true
+      }
+    ]
+  },
+  "music.reach": {
+    "sounds": [
+      {
+        "name": "xpansion:music/reach_for_the_summit",
+        "stream": true
+      }
+    ]
+  },
+  "music.shovel": {
+    "sounds": [
+      {
+        "name": "xpansion:music/shovel",
+        "stream": true
+      }
+    ]
+  },
+  "music.cup": {
+    "sounds": [
+      {
+        "name": "xpansion:music/cup",
+        "stream": true
+      }
+    ]
+  },
+  "music.spider": {
+    "sounds": [
+      {
+        "name": "xpansion:music/spider",
+        "stream": true
+      }
+    ]
+  },
+  "music.overture": {
+    "sounds": [
+      {
+        "name": "xpansion:music/overture",
+        "stream": true
+      }
+    ]
+  },
+  "music.awakening": {
+    "sounds": [
+      {
+        "name": "xpansion:music/awakening",
+        "stream": true
+      }
+    ]
+  },
+  "music.shoreline": {
+    "sounds": [
+      {
+        "name": "xpansion:music/shoreline",
+        "stream": true
+      }
+    ]
+  },
+  "music.prospector": {
+    "sounds": [
+      {
+        "name": "xpansion:music/prospector",
+        "stream": true
+      }
+    ]
+  },
+  "music.alternate_day": {
+    "sounds": [
+      {
+        "name": "xpansion:music/alternate_day",
+        "stream": true
+      }
+    ]
+  },
+  "music.paper": {
+    "sounds": [
+      {
+        "name": "xpansion:music/paper",
+        "stream": true
+      }
+    ]
+  },
+  "music.boiler": {
+    "sounds": [
+      {
+        "name": "xpansion:music/boiler",
+        "stream": true
+      }
+    ]
+  }
+}

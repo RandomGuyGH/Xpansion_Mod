@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "xpansion:item/enter_hallownest_music_disc"
+  }
+}

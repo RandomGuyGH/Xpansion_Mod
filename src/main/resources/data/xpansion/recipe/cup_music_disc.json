@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:red_dye"
+    },
+    "B": {
+      "item": "minecraft:black_dye"
+    },
+    "C": {
+      "item": "minecraft:white_dye"
+    },
+    "D": {
+      "item": "minecraft:milk_bucket"
+    },
+    "E": {
+      "item": "xpansion:strange_crystal"
+    }
+  },
+  "pattern": [
+    " A ",
+    "BEC",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:cup_music_disc"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:cyan_dye"
+    },
+    "B": {
+      "item": "minecraft:lime_dye"
+    },
+    "C": {
+      "item": "minecraft:green_dye"
+    },
+    "D": {
+      "item": "minecraft:seeds"
+    },
+    "E": {
+      "item": "xpansion:strange_crystal"
+    }
+  },
+  "pattern": [
+    " A ",
+    "BEC",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:overture_music_disc"
+  }
+}

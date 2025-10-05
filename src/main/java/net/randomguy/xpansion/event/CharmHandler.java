@@ -484,6 +484,20 @@ public class CharmHandler {
 
         blazeflintHitCount.put(player, count);
     }
+    // Levitation Charm
+    @SubscribeEvent
+    public static void onPlayerAttackLevitate(LivingHurtEvent event) {
+        if (!(event.getSource().getEntity() instanceof Player player)) return;
+        if (player.level().isClientSide) return;
+
+        // Check if player has the Withering Charm equipped in slots 6-8
+        if (!hasLevitationCharmEquipped(player)) return;
+
+        // Only apply to living entities (exclude things like armor stands)
+        if (event.getEntity() instanceof LivingEntity target) {
+            target.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 40, 1));
+        }
+    }
     private static boolean hasCritCharmEquipped(Player player) {
         for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
             ItemStack stack = player.getInventory().getItem(slotIndex);
@@ -649,11 +663,17 @@ public class CharmHandler {
         }
         return false;
     }
-    // ---- Helper method ----
     private static boolean hasBlindnessCurseCharmEquipped(Player player) {
         for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
             ItemStack stack = player.getInventory().getItem(slotIndex);
             if (stack.is(ModItems.THIRD_EYE_BAND.get())) return true;
+        }
+        return false;
+    }
+    private static boolean hasLevitationCharmEquipped(Player player) {
+        for (int slotIndex = 6; slotIndex <= 8; slotIndex++) {
+            ItemStack stack = player.getInventory().getItem(slotIndex);
+            if (stack.is(ModItems.TOTEM_OF_SHULKING.get())) return true;
         }
         return false;
     }

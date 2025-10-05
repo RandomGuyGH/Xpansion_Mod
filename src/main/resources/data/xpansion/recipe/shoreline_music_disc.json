@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:green_dye"
+    },
+    "B": {
+      "item": "minecraft:pink_dye"
+    },
+    "C": {
+      "item": "minecraft:blue_dye"
+    },
+    "D": {
+      "item": "minecraft:stick"
+    },
+    "E": {
+      "item": "xpansion:strange_crystal"
+    }
+  },
+  "pattern": [
+    " A ",
+    "BEC",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:shoreline_music_disc"
+  }
+}

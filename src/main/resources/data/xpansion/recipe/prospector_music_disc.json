@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:red_dye"
+    },
+    "B": {
+      "item": "minecraft:black_dye"
+    },
+    "C": {
+      "item": "minecraft:orange_dye"
+    },
+    "D": {
+      "item": "minecraft:gold_nugget"
+    },
+    "E": {
+      "item": "xpansion:strange_crystal"
+    }
+  },
+  "pattern": [
+    " A ",
+    "BEC",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:prospector_music_disc"
+  }
+}

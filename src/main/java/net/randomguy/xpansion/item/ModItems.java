@@ -1,12 +1,14 @@
 package net.randomguy.xpansion.item;
 import net.minecraft.world.item.*;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.randomguy.xpansion.XpansionMod;
 import net.randomguy.xpansion.item.custom.HeartConsumableItem;
+import net.randomguy.xpansion.sound.ModSounds;
 
 
 import java.util.List;
@@ -33,15 +35,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LIGHT_SILK = ITEMS.register("light_silk",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> SLIGHT_UNSTABLE_IRON = ITEMS.register("slight_unstable_iron",
+    public static final RegistryObject<Item> LEAD = ITEMS.register("lead",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> UNSTABLE_IRON = ITEMS.register("unstable_iron",
-            () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> HIGH_UNSTABLE_IRON = ITEMS.register("high_unstable_iron",
-            () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> KINECTITE_DROPS = ITEMS.register("kinectite_drops",
-            () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> KINECTITE_SHARD = ITEMS.register("kinectite_shard",
+    public static final RegistryObject<Item> STRANGE_CRYSTAL = ITEMS.register("strange_crystal",
             () -> new Item(new Item.Properties()));
 
 
@@ -62,16 +58,6 @@ public class ModItems {
                 public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
                     pTooltipComponents.add(Component.translatable("tooltip.xpansion.swift_cloak_description"));
                     pTooltipComponents.add(Component.translatable("tooltip.xpansion.swift_cloak_function"));
-                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.accolade"));
-                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
-                }
-            });
-    public static final RegistryObject<Item> CLIMB_CLAW = ITEMS.register("climb_claw",
-            () -> new Item(new Item.Properties().stacksTo(1)){
-                @Override
-                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
-                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.climb_claw_description"));
-                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.climb_claw_function"));
                     pTooltipComponents.add(Component.translatable("tooltip.xpansion.accolade"));
                     super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
                 }
@@ -353,9 +339,112 @@ public class ModItems {
                             super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
                         }
                     });
+    public static final RegistryObject<Item> TOTEM_OF_SHULKING =
+            ITEMS.register("totem_of_shulking",
+                    () -> new Item(new Item.Properties().stacksTo(1)){
+                        @Override
+                        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.totem_of_shulking_description"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.totem_of_shulking_function"));
+                            pTooltipComponents.add(Component.translatable("tooltip.xpansion.charm"));
+                            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                        }
+                    });
 
 
 
+    public static final RegistryObject<Item> WIND_MUSIC_DISC =
+            ITEMS.register("wind_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.WIND_KEY)
+                    ));
+
+    public static final RegistryObject<Item> ENTER_HALLOWNEST_MUSIC_DISC =
+            ITEMS.register("enter_hallownest_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.ENTER_HALLOWNEST_KEY)
+                    ));
+    public static final RegistryObject<Item> REACH_MUSIC_DISC =
+            ITEMS.register("reach_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.REACH_KEY)
+                    ));
+    public static final RegistryObject<Item> SHOVEL_MUSIC_DISC =
+            ITEMS.register("shovel_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.SHOVEL_KEY)
+                    ));
+    public static final RegistryObject<Item> CUP_MUSIC_DISC =
+            ITEMS.register("cup_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.CUP_KEY)
+                    ));
+    public static final RegistryObject<Item> SPIDER_MUSIC_DISC =
+            ITEMS.register("spider_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.SPIDER_KEY)
+                    ));
+    public static final RegistryObject<Item> ALTERNATE_DAY_MUSIC_DISC =
+            ITEMS.register("alternate_day_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.ALTERNATE_DAY_KEY)
+                    ));
+    public static final RegistryObject<Item> SHORELINE_MUSIC_DISC =
+            ITEMS.register("shoreline_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.SHORELINE_KEY)
+                    ));
+    public static final RegistryObject<Item> AWAKENING_MUSIC_DISC =
+            ITEMS.register("awakening_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.AWAKENING_KEY)
+                    ));
+    public static final RegistryObject<Item> PROSPECTOR_MUSIC_DISC =
+            ITEMS.register("prospector_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.PROSPECTOR_KEY)
+                    ));
+    public static final RegistryObject<Item> OVERTURE_MUSIC_DISC =
+            ITEMS.register("overture_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.OVERTURE_KEY)
+                    ));
+    public static final RegistryObject<Item> PAPER_MUSIC_DISC =
+            ITEMS.register("paper_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.PAPER_KEY)
+                    ));
+    public static final RegistryObject<Item> BOILER_MUSIC_DISC =
+            ITEMS.register("boiler_music_disc",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .jukeboxPlayable(ModSounds.BOILER_KEY)
+                    ));
 
 
     public static void register(IEventBus eventBus) {

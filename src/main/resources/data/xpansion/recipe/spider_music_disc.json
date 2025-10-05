@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:cyan_dye"
+    },
+    "B": {
+      "item": "minecraft:yellow_dye"
+    },
+    "C": {
+      "item": "minecraft:purple_dye"
+    },
+    "D": {
+      "item": "minecraft:spider_eye"
+    },
+    "E": {
+      "item": "xpansion:strange_crystal"
+    }
+  },
+  "pattern": [
+    " A ",
+    "BEC",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:spider_music_disc"
+  }
+}
