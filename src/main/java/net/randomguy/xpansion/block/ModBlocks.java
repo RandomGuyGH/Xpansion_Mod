@@ -36,7 +36,6 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.GLASS)));
 
-
     public static final RegistryObject<Block> FABRICATOR = registryBlock("fabricator",
             () -> new FabricatorBlock(BlockBehaviour.Properties.of()
                     .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));

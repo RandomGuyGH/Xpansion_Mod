@@ -32,6 +32,7 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.POLARIZER.get()))
                     .title(Component.translatable("creativetab.xpansion.xpansion_functional"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.FABRICATOR.get());
                         output.accept(ModBlocks.EXTRACTOR.get());
                         output.accept(ModBlocks.POLARIZER.get());
                         output.accept(ModBlocks.LIQUEFIER.get());
