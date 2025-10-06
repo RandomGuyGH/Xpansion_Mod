@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "xpansion:block/polarizer_bottom",
+    "up": "xpansion:block/polarizer_top",
+    "north": "xpansion:block/polarizer_north",
+    "south": "xpansion:block/polarizer_south",
+    "west": "xpansion:block/polarizer_west",
+    "east": "xpansion:block/polarizer_east",
+    "particle": "xpansion:block/polarizer_east"
+  }
+}

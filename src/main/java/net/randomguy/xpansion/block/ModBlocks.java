@@ -12,6 +12,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.randomguy.xpansion.XpansionMod;
+import net.randomguy.xpansion.block.custom.FabricatorBlock;
+import net.randomguy.xpansion.block.custom.LiquefierBlock;
+import net.randomguy.xpansion.block.custom.PolarizerBlock;
 import net.randomguy.xpansion.item.ModItems;
 
 import java.util.function.Supplier;
@@ -32,6 +35,20 @@ public class ModBlocks {
     public static final RegistryObject<Block> KINECTIC_GLASS = registryBlock("kinectic_glass",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.GLASS)));
+
+
+    public static final RegistryObject<Block> FABRICATOR = registryBlock("fabricator",
+            () -> new FabricatorBlock(BlockBehaviour.Properties.of()
+                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final RegistryObject<Block> POLARIZER = registryBlock("polarizer",
+            () -> new PolarizerBlock(BlockBehaviour.Properties.of()
+                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.ANVIL)));
+    public static final RegistryObject<Block> EXTRACTOR = registryBlock("extractor",
+            () -> new ExtractorBlock(BlockBehaviour.Properties.of()
+                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final RegistryObject<Block> LIQUEFIER = registryBlock("liquefier",
+            () -> new LiquefierBlock(BlockBehaviour.Properties.of()
+                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

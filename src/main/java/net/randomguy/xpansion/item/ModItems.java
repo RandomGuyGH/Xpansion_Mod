@@ -7,11 +7,14 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.randomguy.xpansion.XpansionMod;
+import net.randomguy.xpansion.block.ModBlocks;
+import net.randomguy.xpansion.event.JumpingItem;
 import net.randomguy.xpansion.item.custom.HeartConsumableItem;
 import net.randomguy.xpansion.sound.ModSounds;
 
 
 import java.util.List;
+import java.util.Map;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -35,11 +38,35 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LIGHT_SILK = ITEMS.register("light_silk",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> UNSTABLE_METAL = ITEMS.register("unstable_metal",
+            () -> new JumpingItem(new Item.Properties()));
     public static final RegistryObject<Item> LEAD = ITEMS.register("lead",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PURE_SALT = ITEMS.register("pure_salt",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PRIMITIVE_CRUST = ITEMS.register("primitive_crust",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PRIMORDIAL_LIQUID = ITEMS.register("primordial_liquid",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> RADIANT_ORE = ITEMS.register("radiant_ore",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> STRANGE_CRYSTAL = ITEMS.register("strange_crystal",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> UNSTABLE_FRUIT = ITEMS.register("unstable_fruit",
+            () -> new JumpingItem(new Item.Properties()));
+    public static final RegistryObject<Item> POLAR_POMEGRANATE = ITEMS.register("polar_pomegranate",
+            () -> new Item(new Item.Properties()));;
+    public static final RegistryObject<Item> SUNSET_BERRIES = ITEMS.register("sunset_berries",
+            () -> new Item(new Item.Properties()));;
+
+
+
+
+
+    public static final RegistryObject<Item> POLARIZER_BLUEPRINT = ITEMS.register("polarizer_blueprint",
+            () -> new Item(new Item.Properties().stacksTo(1))
+    );
 
 
     public static final RegistryObject<Item> SLIME_INJECTION = ITEMS.register("slime_injection",

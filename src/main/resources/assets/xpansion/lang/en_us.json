@@ -8,6 +8,7 @@
   "item.xpansion.rosary_string": "Rosary String",
   "item.xpansion.rose_gold": "Rose Gold Ingot",
   "item.xpansion.light_silk": "Silk",
+  "item.xpansion.unstable_metal": "Unstable Metal",
   "item.xpansion.lead": "Lead",
   "item.xpansion.kinectite_drops": "Kinectite Drops",
   "item.xpansion.kinectite_shard": "Kinectite Shard",
@@ -16,6 +17,12 @@
   "block.xpansion.reflexium_ore_block": "Reflexium Ore",
   "block.xpansion.reflexium_block": "Reflexium Block",
   "block.xpansion.kinectic_glass": "Kinectic Glass",
+
+  "item.xpansion.unstable_fruit": "Unstable Fruit",
+  "item.xpansion.polar_pomegranate": "Polar Pomegranate",
+
+  "item.xpansion.polarizer_blueprint": "Polarizer Blueprint",
+  "block.xpansion.polarizer": "Polarizer",
 
   "item.xpansion.slime_injection": "Slime Injection",
   "item.xpansion.bottled_void.effect.empty": "Bottled Void",
@@ -151,6 +158,8 @@
   "item.xpansion.enter_hallownest_music_disc": "Music Disc",
 
   "creativetab.xpansion.xpansion_blocks": "Xpansion Building Blocks",
+  "creativetab.xpansion.xpansion_foods": "Xpansion Foods",
+  "creativetab.xpansion.xpansion_functional": "Xpansion Functional Blocks",
   "creativetab.xpansion.xpansion_discs": "Xpansion Music Discs",
   "creativetab.xpansion.xpansion_ingredients": "Xpansion Ingredients",
   "creativetab.xpansion.xpansion_weapons": "Xpansion Equipments",

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "minecraft:fire_charge"
+    },
+    "C": {
+      "item": "xpansion:bottled_void"
+    },
+    "D": {
+      "item": "minecraft:iron_ingot"
+    },
+    "E": {
+      "item": "xpansion:polarizer_blueprint"
+    }
+  },
+  "pattern": [
+    "DAD",
+    "BEC",
+    "DDD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:polarizer"
+  }
+}

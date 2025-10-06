@@ -16,6 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.randomguy.xpansion.block.ModBlocks;
 import net.randomguy.xpansion.item.ModCreativeModeTabs;
 import net.randomguy.xpansion.item.ModItems;
+import net.randomguy.xpansion.registry.ModBlockEntities;
 import net.randomguy.xpansion.sound.ModSounds;
 import org.slf4j.Logger;
 
@@ -44,6 +45,7 @@ public class XpansionMod {
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         ModSounds.register(modEventBus);
+        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

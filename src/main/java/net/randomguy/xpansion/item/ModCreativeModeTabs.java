@@ -28,8 +28,65 @@ public class ModCreativeModeTabs {
 
                     .build());
 
-    public static final RegistryObject<CreativeModeTab> DISCS_TAB = CREATIVE_MODE_TABS.register("xpansion_discs_tab",
+    public static final RegistryObject<CreativeModeTab> XPANSION_FUNCTIONAL_BLOCKS_TAB = CREATIVE_MODE_TABS.register("xpansion_functional_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.POLARIZER.get()))
+                    .title(Component.translatable("creativetab.xpansion.xpansion_functional"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.EXTRACTOR.get());
+                        output.accept(ModBlocks.POLARIZER.get());
+                        output.accept(ModBlocks.LIQUEFIER.get());
+
+                    })
+
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> XPANSION_INGREDIENTS_TAB = CREATIVE_MODE_TABS.register("xpansion_ingredients_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.REFLEXIUM.get()))
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_FUNCTIONAL_BLOCKS_TAB.getId())
+                    .title(Component.translatable("creativetab.xpansion.xpansion_ingredients"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.CHERRY_BLOSSOM.get());
+                        output.accept(ModItems.ROSE_GOLD.get());
+                        output.accept(ModItems.UPPER_HALF_COPPER_HEART.get());
+                        output.accept(ModItems.DOWN_HALF_COPPER_HEART.get());
+                        output.accept(ModItems.LIGHT_SILK.get());
+                        output.accept(ModItems.UNSTABLE_METAL.get());
+                        output.accept(ModItems.LEAD.get());
+                        output.accept(ModItems.REFLEXIUM_ORE.get());
+                        output.accept(ModItems.REFLEXIUM.get());
+                        output.accept(ModItems.KINECTIC_ROSARIES.get());
+                        output.accept(ModItems.ROSARY_STRING.get());
+                        output.accept(ModItems.POLARIZER_BLUEPRINT.get());
+                        output.accept(ModItems.PURE_SALT.get());
+                        output.accept(ModItems.PRIMITIVE_CRUST.get());
+                        output.accept(ModItems.RADIANT_ORE.get());
+                        output.accept(ModItems.STRANGE_CRYSTAL.get());
+                    })
+
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> XPANSION_FOODS_TAB = CREATIVE_MODE_TABS.register("xpansion_foods_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.POLAR_POMEGRANATE.get()))
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_FUNCTIONAL_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
+                    .title(Component.translatable("creativetab.xpansion.xpansion_foods"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.UNSTABLE_FRUIT.get());
+                        output.accept(ModItems.POLAR_POMEGRANATE.get());
+                        output.accept(ModItems.SUNSET_BERRIES.get());
+
+                    })
+
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> XPANSION_DISCS_TAB = CREATIVE_MODE_TABS.register("xpansion_discs_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.REACH_MUSIC_DISC.get()))
+                    .withTabsBefore(XPANSION_FUNCTIONAL_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
+                    .withTabsBefore(XPANSION_FOODS_TAB.getId())
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
                     .title(Component.translatable("creativetab.xpansion.xpansion_discs"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.WIND_MUSIC_DISC.get());
@@ -50,30 +107,14 @@ public class ModCreativeModeTabs {
                     })
 
                     .build());
-    public static final RegistryObject<CreativeModeTab> XPANSION_INGREDIENTS_TAB = CREATIVE_MODE_TABS.register("xpansion_ingredients_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.REFLEXIUM.get()))
-                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
-                    .title(Component.translatable("creativetab.xpansion.xpansion_ingredients"))
-                    .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.CHERRY_BLOSSOM.get());
-                        output.accept(ModItems.ROSE_GOLD.get());
-                        output.accept(ModItems.UPPER_HALF_COPPER_HEART.get());
-                        output.accept(ModItems.DOWN_HALF_COPPER_HEART.get());
-                        output.accept(ModItems.LIGHT_SILK.get());
-                        output.accept(ModItems.LEAD.get());
-                        output.accept(ModItems.REFLEXIUM_ORE.get());
-                        output.accept(ModItems.REFLEXIUM.get());
-                        output.accept(ModItems.KINECTIC_ROSARIES.get());
-                        output.accept(ModItems.ROSARY_STRING.get());
-                        output.accept(ModItems.STRANGE_CRYSTAL.get());
-                    })
-
-                    .build());
 
     public static final RegistryObject<CreativeModeTab> XPANSION_WEAPONS_TAB = CREATIVE_MODE_TABS.register("xpansion_weapons_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.SLIME_INJECTION.get()))
-                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_FUNCTIONAL_BLOCKS_TAB.getId())
                     .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
+                    .withTabsBefore(XPANSION_FOODS_TAB.getId())
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_DISCS_TAB.getId())
                     .title(Component.translatable("creativetab.xpansion.xpansion_weapons"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.SLIME_INJECTION.get());
@@ -85,8 +126,11 @@ public class ModCreativeModeTabs {
 
     public static final RegistryObject<CreativeModeTab> XPANSION_ACCOLADES_TAB = CREATIVE_MODE_TABS.register("xpansion_accolades_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.SWIFT_CLOAK.get()))
-                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_FUNCTIONAL_BLOCKS_TAB.getId())
                     .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
+                    .withTabsBefore(XPANSION_FOODS_TAB.getId())
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_DISCS_TAB.getId())
                     .withTabsBefore(XPANSION_WEAPONS_TAB.getId())
                     .title(Component.translatable("creativetab.xpansion.xpansion_accolades"))
                     .displayItems((itemDisplayParameters, output) -> {
@@ -98,9 +142,13 @@ public class ModCreativeModeTabs {
                     .build());
     public static final RegistryObject<CreativeModeTab> XPANSION_CHARMS_TAB = CREATIVE_MODE_TABS.register("xpansion_charms_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.IRON_LOTUS.get()))
-                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_FUNCTIONAL_BLOCKS_TAB.getId())
                     .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
+                    .withTabsBefore(XPANSION_FOODS_TAB.getId())
+                    .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
+                    .withTabsBefore(XPANSION_DISCS_TAB.getId())
                     .withTabsBefore(XPANSION_WEAPONS_TAB.getId())
+                    .withTabsBefore(XPANSION_ACCOLADES_TAB.getId())
                     .title(Component.translatable("creativetab.xpansion.xpansion_charms"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.IRON_LOTUS.get());
