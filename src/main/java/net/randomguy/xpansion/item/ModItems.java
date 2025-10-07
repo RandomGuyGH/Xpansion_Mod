@@ -55,7 +55,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> UNSTABLE_FRUIT = ITEMS.register("unstable_fruit",
             () -> new JumpingItem(new Item.Properties()));
-    public static final RegistryObject<Item> POLAR_POMEGRANATE = ITEMS.register("polar_pomegranate",
+    public static final RegistryObject<Item> POLAR_MANGO = ITEMS.register("polar_mango",
             () -> new Item(new Item.Properties()));;
     public static final RegistryObject<Item> SUNSET_BERRIES = ITEMS.register("sunset_berries",
             () -> new Item(new Item.Properties()));;
@@ -63,9 +63,29 @@ public class ModItems {
 
 
 
-
+    public static final RegistryObject<Item> EXTRACTOR_BLUEPRINT = ITEMS.register("extractor_blueprint",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.extractor_blueprint_description"));
+                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                }
+            }
+    );
+    public static final RegistryObject<Item> LIQUEFIER_BLUEPRINT = ITEMS.register("liquifier_blueprint",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.liquifier_blueprint_description"));
+                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                }
+            }
+    );
     public static final RegistryObject<Item> POLARIZER_BLUEPRINT = ITEMS.register("polarizer_blueprint",
-            () -> new Item(new Item.Properties().stacksTo(1))
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.polarizer_blueprint_description"));
+                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                }
+            }
     );
 
 

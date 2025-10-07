@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "xpansion:item/polar_pomegranate"
+    "layer0": "xpansion:item/extractor_blueprint"
   }
 }

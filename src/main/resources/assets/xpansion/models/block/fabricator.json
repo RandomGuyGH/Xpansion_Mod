@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "xpansion:block/fabricator_bottom",
+    "up": "xpansion:block/fabricator_top",
+    "north": "xpansion:block/fabricator_north",
+    "south": "xpansion:block/fabricator_south",
+    "west": "xpansion:block/fabricator_west",
+    "east": "xpansion:block/fabricator_east",
+    "particle": "xpansion:block/fabricator_east"
+  }
+}

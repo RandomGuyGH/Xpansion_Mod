@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "xpansion:block/liquifier_bottom",
+    "up": "xpansion:block/liquifier_top",
+    "north": "xpansion:block/liquifier_north",
+    "south": "xpansion:block/liquifier_south",
+    "west": "xpansion:block/liquifier_west",
+    "east": "xpansion:block/liquifier_east",
+    "particle": "xpansion:block/liquifier_east"
+  }
+}

@@ -22,7 +22,7 @@ public class PolarizerBlock extends Block {
                 itemEntity.setItem(new ItemStack(ModItems.LEAD.get(), itemEntity.getItem().getCount()));
             }
             if(itemEntity.getItem().getItem() == ModItems.UNSTABLE_FRUIT.get()){
-                itemEntity.setItem(new ItemStack(ModItems.POLAR_POMEGRANATE.get(), itemEntity.getItem().getCount()));
+                itemEntity.setItem(new ItemStack(ModItems.POLAR_MANGO.get(), itemEntity.getItem().getCount()));
             }
         }
         super.stepOn(pLevel, pPos, pState, pEntity);

@@ -29,7 +29,7 @@ public class ModCreativeModeTabs {
                     .build());
 
     public static final RegistryObject<CreativeModeTab> XPANSION_FUNCTIONAL_BLOCKS_TAB = CREATIVE_MODE_TABS.register("xpansion_functional_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.POLARIZER.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.FABRICATOR.get()))
                     .title(Component.translatable("creativetab.xpansion.xpansion_functional"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.FABRICATOR.get());
@@ -58,24 +58,28 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.REFLEXIUM.get());
                         output.accept(ModItems.KINECTIC_ROSARIES.get());
                         output.accept(ModItems.ROSARY_STRING.get());
-                        output.accept(ModItems.POLARIZER_BLUEPRINT.get());
+                        output.accept(ModItems.STRANGE_CRYSTAL.get());
                         output.accept(ModItems.PURE_SALT.get());
                         output.accept(ModItems.PRIMITIVE_CRUST.get());
+                        output.accept(ModItems.PRIMORDIAL_LIQUID.get());
                         output.accept(ModItems.RADIANT_ORE.get());
-                        output.accept(ModItems.STRANGE_CRYSTAL.get());
+                        output.accept(ModItems.EXTRACTOR_BLUEPRINT.get());
+                        output.accept(ModItems.LIQUEFIER_BLUEPRINT.get());
+                        output.accept(ModItems.POLARIZER_BLUEPRINT.get());
+
                     })
 
                     .build());
 
     public static final RegistryObject<CreativeModeTab> XPANSION_FOODS_TAB = CREATIVE_MODE_TABS.register("xpansion_foods_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.POLAR_POMEGRANATE.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.POLAR_MANGO.get()))
                     .withTabsBefore(XPANSION_BUILDING_BLOCKS_TAB.getId())
                     .withTabsBefore(XPANSION_FUNCTIONAL_BLOCKS_TAB.getId())
                     .withTabsBefore(XPANSION_INGREDIENTS_TAB.getId())
                     .title(Component.translatable("creativetab.xpansion.xpansion_foods"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.UNSTABLE_FRUIT.get());
-                        output.accept(ModItems.POLAR_POMEGRANATE.get());
+                        output.accept(ModItems.POLAR_MANGO.get());
                         output.accept(ModItems.SUNSET_BERRIES.get());
 
                     })

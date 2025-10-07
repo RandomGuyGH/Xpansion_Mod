@@ -21,6 +21,9 @@ public class FabricatorBlock extends Block {
     private int bottled_void;
     private int fire_charge;
     private int pure_salt;
+    private int hopper;
+    private int copper_ingot;
+    private int redstone;
 
     public FabricatorBlock(Properties properties) {
         super(properties);
@@ -35,6 +38,9 @@ public class FabricatorBlock extends Block {
         bottled_void = 0;
         fire_charge = 0;
         pure_salt = 0;
+        hopper = 0;
+        copper_ingot = 0;
+        redstone = 0;
     }
 
     @Override
@@ -43,6 +49,14 @@ public class FabricatorBlock extends Block {
         if (pEntity instanceof ItemEntity itemEntity) {
             if (itemEntity.getItem().getItem() == ModItems.RADIANT_ORE.get()) {
                 radiant_ore += itemEntity.getItem().getCount();
+                itemEntity.remove(Entity.RemovalReason.DISCARDED);
+            }
+            if (itemEntity.getItem().getItem() == Items.COPPER_INGOT) {
+                copper_ingot += itemEntity.getItem().getCount();
+                itemEntity.remove(Entity.RemovalReason.DISCARDED);
+            }
+            if (itemEntity.getItem().getItem() == Items.REDSTONE) {
+                redstone += itemEntity.getItem().getCount();
                 itemEntity.remove(Entity.RemovalReason.DISCARDED);
             }
             if (itemEntity.getItem().getItem() == ModItems.PURE_SALT.get()) {
@@ -73,13 +87,38 @@ public class FabricatorBlock extends Block {
                 iron_ingot += itemEntity.getItem().getCount();
                 itemEntity.remove(Entity.RemovalReason.DISCARDED);
             }
+            if (itemEntity.getItem().getItem() == Items.HOPPER) {
+                hopper += itemEntity.getItem().getCount();
+                itemEntity.remove(Entity.RemovalReason.DISCARDED);
+            }
 
 
             if (itemEntity.getItem().getItem() == ModItems.POLARIZER_BLUEPRINT.get()) {
+                if (radiant_ore >= 1 && primordiaL_liquid >= 10 && fire_charge >= 1 && bottled_void >= 1 && pure_salt >= 5 && diamond >= 1) {
+                    primordiaL_liquid -= 10;
+                    radiant_ore -= 1;
+                    fire_charge -= 1;
+                    bottled_void -= 1;
+                    pure_salt -= 5;
+                    diamond -= 1;
+                    itemEntity.setItem(new ItemStack(ModBlocks.POLARIZER.get(), itemEntity.getItem().getCount()));
+                    dropExtras(pLevel, pPos);
+                }
+            }
+            if (itemEntity.getItem().getItem() == ModItems.LIQUEFIER_BLUEPRINT.get()) {
                 if (radiant_ore >= 1 && primordiaL_liquid >= 2) {
                     primordiaL_liquid -= 2;
                     radiant_ore -= 1;
-                    itemEntity.setItem(new ItemStack(ModBlocks.POLARIZER.get(), itemEntity.getItem().getCount()));
+                    itemEntity.setItem(new ItemStack(ModBlocks.LIQUEFIER.get(), itemEntity.getItem().getCount()));
+                    dropExtras(pLevel, pPos);
+                }
+            }
+            if (itemEntity.getItem().getItem() == ModItems.EXTRACTOR_BLUEPRINT.get()) {
+                if (copper_ingot >= 10 && iron_ingot >= 10 && redstone >= 5) {
+                    copper_ingot = copper_ingot - 10;
+                    iron_ingot = iron_ingot - 10;
+                    redstone = redstone - 5;
+                    itemEntity.setItem(new ItemStack(ModBlocks.EXTRACTOR.get(), itemEntity.getItem().getCount()));
                     dropExtras(pLevel, pPos);
                 }
             }
@@ -99,17 +138,27 @@ public class FabricatorBlock extends Block {
             level.addFreshEntity(radiantDrop);
             radiant_ore = 0;
         }
-
-        if (primordiaL_liquid > 0) {
-            ItemEntity liquidDrop = new ItemEntity(
+        if (redstone > 0) {
+            ItemEntity radiantDrop = new ItemEntity(
                     level,
                     pos.getX() + 0.5,
                     pos.getY() + 1.0,
                     pos.getZ() + 0.5,
-                    new ItemStack(ModItems.PRIMORDIAL_LIQUID.get(), primordiaL_liquid)
+                    new ItemStack(Items.REDSTONE, redstone)
             );
-            level.addFreshEntity(liquidDrop);
-            primordiaL_liquid = 0;
+            level.addFreshEntity(radiantDrop);
+            redstone = 0;
+        }
+        if (copper_ingot > 0) {
+            ItemEntity radiantDrop = new ItemEntity(
+                    level,
+                    pos.getX() + 0.5,
+                    pos.getY() + 1.0,
+                    pos.getZ() + 0.5,
+                    new ItemStack(Items.COPPER_INGOT, copper_ingot)
+            );
+            level.addFreshEntity(radiantDrop);
+            copper_ingot = 0;
         }
         if (bottled_void > 0) {
             ItemEntity liquidDrop = new ItemEntity(
@@ -117,7 +166,7 @@ public class FabricatorBlock extends Block {
                     pos.getX() + 0.5,
                     pos.getY() + 1.0,
                     pos.getZ() + 0.5,
-                    new ItemStack(ModItems.PRIMORDIAL_LIQUID.get(), primordiaL_liquid)
+                    new ItemStack(ModItems.BOTTLED_VOID.get(), bottled_void)
             );
             level.addFreshEntity(liquidDrop);
             bottled_void = 0;
@@ -128,10 +177,21 @@ public class FabricatorBlock extends Block {
                     pos.getX() + 0.5,
                     pos.getY() + 1.0,
                     pos.getZ() + 0.5,
-                    new ItemStack(ModItems.PRIMORDIAL_LIQUID.get(), primordiaL_liquid)
+                    new ItemStack(ModItems.SUNSET_BERRIES.get(), sunset_berries)
             );
             level.addFreshEntity(liquidDrop);
             sunset_berries = 0;
+        }
+        if (hopper > 0) {
+            ItemEntity liquidDrop = new ItemEntity(
+                    level,
+                    pos.getX() + 0.5,
+                    pos.getY() + 1.0,
+                    pos.getZ() + 0.5,
+                    new ItemStack(Items.HOPPER, hopper)
+            );
+            level.addFreshEntity(liquidDrop);
+            hopper = 0;
         }
         if (fire_charge > 0) {
             ItemEntity liquidDrop = new ItemEntity(
@@ -139,7 +199,7 @@ public class FabricatorBlock extends Block {
                     pos.getX() + 0.5,
                     pos.getY() + 1.0,
                     pos.getZ() + 0.5,
-                    new ItemStack(ModItems.PRIMORDIAL_LIQUID.get(), primordiaL_liquid)
+                    new ItemStack(Items.FIRE_CHARGE, fire_charge)
             );
             level.addFreshEntity(liquidDrop);
             fire_charge = 0;
@@ -150,7 +210,7 @@ public class FabricatorBlock extends Block {
                     pos.getX() + 0.5,
                     pos.getY() + 1.0,
                     pos.getZ() + 0.5,
-                    new ItemStack(ModItems.PRIMORDIAL_LIQUID.get(), primordiaL_liquid)
+                    new ItemStack(Items.DIAMOND, diamond)
             );
             level.addFreshEntity(liquidDrop);
             diamond = 0;
@@ -161,7 +221,7 @@ public class FabricatorBlock extends Block {
                     pos.getX() + 0.5,
                     pos.getY() + 1.0,
                     pos.getZ() + 0.5,
-                    new ItemStack(ModItems.PRIMORDIAL_LIQUID.get(), primordiaL_liquid)
+                    new ItemStack(ModItems.PURE_SALT.get(), pure_salt)
             );
             level.addFreshEntity(liquidDrop);
             pure_salt = 0;
@@ -172,7 +232,7 @@ public class FabricatorBlock extends Block {
                     pos.getX() + 0.5,
                     pos.getY() + 1.0,
                     pos.getZ() + 0.5,
-                    new ItemStack(ModItems.PRIMORDIAL_LIQUID.get(), primordiaL_liquid)
+                    new ItemStack(Items.IRON_INGOT, iron_ingot)
             );
             level.addFreshEntity(liquidDrop);
             iron_ingot = 0;

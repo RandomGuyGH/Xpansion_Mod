@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "xpansion:block/extractor_bottom",
+    "up": "xpansion:block/extractor_top",
+    "north": "xpansion:block/extractor_north",
+    "south": "xpansion:block/extractor_south",
+    "west": "xpansion:block/extractor_west",
+    "east": "xpansion:block/extractor_east",
+    "particle": "xpansion:block/extractor_east"
+  }
+}
