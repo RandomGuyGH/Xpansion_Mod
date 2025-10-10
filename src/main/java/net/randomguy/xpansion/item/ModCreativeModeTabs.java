@@ -37,7 +37,6 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.POLARIZER.get());
                         output.accept(ModBlocks.LIQUEFIER.get());
                         output.accept(ModBlocks.PORTABLE_SELLER.get());
-                        output.accept(ModBlocks.RED_TELEPORTER.get());
 
                     })
 
