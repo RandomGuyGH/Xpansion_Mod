@@ -12,9 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.randomguy.xpansion.XpansionMod;
-import net.randomguy.xpansion.block.custom.FabricatorBlock;
-import net.randomguy.xpansion.block.custom.LiquefierBlock;
-import net.randomguy.xpansion.block.custom.PolarizerBlock;
+import net.randomguy.xpansion.block.custom.*;
 import net.randomguy.xpansion.item.ModItems;
 
 import java.util.function.Supplier;
@@ -22,7 +20,6 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, XpansionMod.MOD_ID);
-
 
     public static final RegistryObject<Block> REFLEXIUM_ORE_BLOCK = registryBlock("reflexium_ore_block",
             () -> new DropExperienceBlock(UniformInt.of(2, 4), BlockBehaviour.Properties.of()
@@ -41,12 +38,15 @@ public class ModBlocks {
                     .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final RegistryObject<Block> POLARIZER = registryBlock("polarizer",
             () -> new PolarizerBlock(BlockBehaviour.Properties.of()
-                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.ANVIL)));
+                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final RegistryObject<Block> EXTRACTOR = registryBlock("extractor",
             () -> new ExtractorBlock(BlockBehaviour.Properties.of()
                     .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final RegistryObject<Block> LIQUEFIER = registryBlock("liquefier",
             () -> new LiquefierBlock(BlockBehaviour.Properties.of()
+                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final RegistryObject<Block> PORTABLE_SELLER = registryBlock("portable_seller",
+            () -> new SellerBlock(BlockBehaviour.Properties.of()
                     .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block){

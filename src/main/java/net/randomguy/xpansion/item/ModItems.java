@@ -50,6 +50,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RADIANT_ORE = ITEMS.register("radiant_ore",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SPEND_O_COIN = ITEMS.register("spend_o_coin",
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> STRANGE_CRYSTAL = ITEMS.register("strange_crystal",
             () -> new Item(new Item.Properties()));
 
@@ -71,10 +73,10 @@ public class ModItems {
                 }
             }
     );
-    public static final RegistryObject<Item> LIQUEFIER_BLUEPRINT = ITEMS.register("liquifier_blueprint",
+    public static final RegistryObject<Item> LIQUEFIER_BLUEPRINT = ITEMS.register("liquefier_blueprint",
             () -> new Item(new Item.Properties().stacksTo(1)){
                 public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
-                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.liquifier_blueprint_description"));
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.liquefier_blueprint_description"));
                     super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
                 }
             }
@@ -87,12 +89,20 @@ public class ModItems {
                 }
             }
     );
+    public static final RegistryObject<Item> PORTABLE_SELLER_BLUEPRINT = ITEMS.register("portable_seller_blueprint",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.portable_seller_blueprint_description"));
+                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                }
+            }
+    );
 
 
     public static final RegistryObject<Item> SLIME_INJECTION = ITEMS.register("slime_injection",
             () -> new HeartConsumableItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BOTTLED_VOID = ITEMS.register("bottled_void",
-            () -> new PotionItem(new Item.Properties()
+            () -> new PotionItem(new Item.Properties().stacksTo(1)
             )
     );
 

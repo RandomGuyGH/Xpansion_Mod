@@ -96,6 +96,11 @@ public class ModEvents {
                 5, 10, 0.05f
         ));
         event.getGenericTrades().add((trader, rand) -> new MerchantOffer(
+                new ItemCost(ModItems.SPEND_O_COIN.get(), 1),
+                new ItemStack(Items.EMERALD, 5),
+                5, 10, 0.05f
+        ));
+        event.getGenericTrades().add((trader, rand) -> new MerchantOffer(
                 new ItemCost(Items.EMERALD, 13),
                 new ItemStack(ModItems.RAGING_SOUL.get(), 1),
                 5, 10, 0.05f

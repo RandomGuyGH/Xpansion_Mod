@@ -19,7 +19,6 @@ import net.randomguy.xpansion.block.ExtractorEntity;
 import net.randomguy.xpansion.block.ModBlocks;
 
 
-
 public class ModBlockEntities {
 
 // MOD_ID should be defined in XpansionMod.java
@@ -35,5 +34,7 @@ public class ModBlockEntities {
         public static final RegistryObject<BlockEntityType<ExtractorEntity>> EXTRACTOR_BE =
 
         BLOCK_ENTITIES.register("atmospheric_condenser_be", () -> BlockEntityType.Builder.of(ExtractorEntity::new, ModBlocks.EXTRACTOR.get()).build(null));
+
 }
+
 

@@ -36,6 +36,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.EXTRACTOR.get());
                         output.accept(ModBlocks.POLARIZER.get());
                         output.accept(ModBlocks.LIQUEFIER.get());
+                        output.accept(ModBlocks.PORTABLE_SELLER.get());
+                        output.accept(ModBlocks.RED_TELEPORTER.get());
 
                     })
 
@@ -66,6 +68,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.EXTRACTOR_BLUEPRINT.get());
                         output.accept(ModItems.LIQUEFIER_BLUEPRINT.get());
                         output.accept(ModItems.POLARIZER_BLUEPRINT.get());
+                        output.accept(ModItems.PORTABLE_SELLER_BLUEPRINT.get());
 
                     })
 
