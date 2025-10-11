@@ -36,6 +36,18 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ROSE_GOLD = ITEMS.register("rose_gold",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CHALK = ITEMS.register("chalk",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> RED_CHALK = ITEMS.register("red_chalk",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BLUE_CHALK = ITEMS.register("blue_chalk",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ORANGE_CHALK = ITEMS.register("orange_chalk",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ROSE_CHALK = ITEMS.register("rose_chalk",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> YELLOW_CHALK = ITEMS.register("yellow_chalk",
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LIGHT_SILK = ITEMS.register("light_silk",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> UNSTABLE_METAL = ITEMS.register("unstable_metal",
@@ -64,7 +76,10 @@ public class ModItems {
 
 
 
-
+    public static final RegistryObject<Item> BLANK_BLUEPRINT = ITEMS.register("blank_blueprint",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+            }
+    );
     public static final RegistryObject<Item> EXTRACTOR_BLUEPRINT = ITEMS.register("extractor_blueprint",
             () -> new Item(new Item.Properties().stacksTo(1)){
                 public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
@@ -93,6 +108,14 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(1)){
                 public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
                     pTooltipComponents.add(Component.translatable("tooltip.xpansion.portable_seller_blueprint_description"));
+                    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+                }
+            }
+    );
+    public static final RegistryObject<Item> DUPLICATOR_BLUEPRINT = ITEMS.register("duplicator_blueprint",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+                    pTooltipComponents.add(Component.translatable("tooltip.xpansion.duplicator_blueprint_description"));
                     super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
                 }
             }

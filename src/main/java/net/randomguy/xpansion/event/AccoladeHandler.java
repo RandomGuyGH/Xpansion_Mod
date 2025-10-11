@@ -54,11 +54,13 @@ public class AccoladeHandler {
             boolean dashReady = player.getPersistentData().getBoolean("AccoladeDashReady");
 
             if (pressingJump && !dashReady && cooldown <= 0) {
-                /// --- compute movement direction from WASD input and yaw ---
-                float forward = (player.input.up ? 1 : 0) - (player.input.down ? 1 : 0);   // W = +1, S = -1
-                float strafe = (player.input.left ? 1 : 0) - (player.input.right ? 1 : 0); // A = +1, D = -1  (fixed)
+                float forward = 0;
+                float strafe = 0;
+                if (CharmHandler.hasDirectionalCharmEquipped(player)) {
+                    forward = (player.input.up ? 1 : 0) - (player.input.down ? 1 : 0);   // W = +1, S = -1
+                    strafe = (player.input.left ? 1 : 0) - (player.input.right ? 1 : 0); // A = +1, D = -1  (fixed)
+                }
 
-// world-space conversion using yaw
                 double dx, dz;
 
                 if (forward == 0 && strafe == 0) {

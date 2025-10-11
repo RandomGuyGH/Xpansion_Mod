@@ -125,6 +125,19 @@ public class FabricatorBlock extends Block {
                     dropExtras(pLevel, pPos);
                 }
             }
+            if (itemEntity.getItem().getItem() == ModItems.DUPLICATOR_BLUEPRINT.get()) {
+                if (diamond >= 35 && iron_ingot >= 30 && hopper >= 1 && radiant_ore >= 15 && primordiaL_liquid >= 40 && sunset_berries >= 25 && pure_salt >= 50) {
+                    iron_ingot = iron_ingot - 30;
+                    diamond = diamond - 35;
+                    hopper = hopper - 1;
+                    pure_salt = pure_salt - 50;
+                    primordiaL_liquid = primordiaL_liquid -  40;
+                    radiant_ore = radiant_ore - 15;
+                    sunset_berries = sunset_berries - 25;
+                    itemEntity.setItem(new ItemStack(ModBlocks.DUPLICATOR.get(), itemEntity.getItem().getCount()));
+                    dropExtras(pLevel, pPos);
+                }
+            }
         }
         super.stepOn(pLevel, pPos, pState, pEntity);
     }

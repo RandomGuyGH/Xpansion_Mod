@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "xpansion:blank_blueprint"
+    },
+    "B": {
+      "item": "xpansion:orange_chalk"
+    }
+  },
+  "pattern": [
+    "AB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:liquefier_blueprint"
+  }
+}

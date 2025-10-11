@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "xpansion:blank_blueprint"
+    },
+    "B": {
+      "item": "xpansion:red_chalk"
+    }
+  },
+  "pattern": [
+    "AB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:extractor_blueprint"
+  }
+}

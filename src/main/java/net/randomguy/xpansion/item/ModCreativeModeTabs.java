@@ -36,7 +36,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.EXTRACTOR.get());
                         output.accept(ModBlocks.POLARIZER.get());
                         output.accept(ModBlocks.LIQUEFIER.get());
-                        output.accept(ModBlocks.PORTABLE_SELLER.get());
+                        output.accept(ModBlocks.DUPLICATOR.get());
 
                     })
 
@@ -60,14 +60,20 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.KINECTIC_ROSARIES.get());
                         output.accept(ModItems.ROSARY_STRING.get());
                         output.accept(ModItems.STRANGE_CRYSTAL.get());
+                        output.accept(ModItems.CHALK.get());
+                        output.accept(ModItems.RED_CHALK.get());
+                        output.accept(ModItems.BLUE_CHALK.get());
+                        output.accept(ModItems.ORANGE_CHALK.get());
+                        output.accept(ModItems.ROSE_CHALK.get());
                         output.accept(ModItems.PURE_SALT.get());
                         output.accept(ModItems.PRIMITIVE_CRUST.get());
                         output.accept(ModItems.PRIMORDIAL_LIQUID.get());
                         output.accept(ModItems.RADIANT_ORE.get());
+                        output.accept(ModItems.BLANK_BLUEPRINT.get());
                         output.accept(ModItems.EXTRACTOR_BLUEPRINT.get());
                         output.accept(ModItems.LIQUEFIER_BLUEPRINT.get());
                         output.accept(ModItems.POLARIZER_BLUEPRINT.get());
-                        output.accept(ModItems.PORTABLE_SELLER_BLUEPRINT.get());
+                        output.accept(ModItems.DUPLICATOR_BLUEPRINT.get());
 
                     })
 

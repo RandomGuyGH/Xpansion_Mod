@@ -1,6 +1,8 @@
 package net.randomguy.xpansion.event;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MinecartItem;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -18,6 +20,8 @@ import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.randomguy.xpansion.item.ModItems;
+
+import java.util.List;
 
 import static net.minecraft.world.item.Items.*;
 
@@ -50,6 +54,25 @@ public class ModEvents {
                         new ItemStack(ModItems.BLAZEFLINT.get())
                 ));
             }
+        }
+    }
+    @SubscribeEvent
+    public static void onVillagerTrades(VillagerTradesEvent event) {
+        if (event.getType() == VillagerProfession.LIBRARIAN) {
+            // Level 1 = Novice
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            List<VillagerTrades.ItemListing> level1 = trades.get(1);
+
+            // Add a custom trade: 1 Diamond for 3 Emeralds
+            level1.add((entity, random) ->
+                    new MerchantOffer(
+                            new ItemCost(Items.EMERALD, 10),
+                            new ItemStack(ModItems.BLANK_BLUEPRINT.get(), 1),
+                            10,   // max uses
+                            2,    // xp
+                            0.02F // price multiplier
+                    )
+            );
         }
     }
 

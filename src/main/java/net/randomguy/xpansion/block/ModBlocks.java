@@ -48,6 +48,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> PORTABLE_SELLER = registryBlock("portable_seller",
             () -> new SellerBlock(BlockBehaviour.Properties.of()
                     .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final RegistryObject<Block> DUPLICATOR = registryBlock("duplicator",
+            () -> new DuplicatorBlock(BlockBehaviour.Properties.of()
+                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

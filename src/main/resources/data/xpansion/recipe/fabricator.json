@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:hopper"
+    },
+    "B": {
+      "item": "minecraft:green_dye"
+    },
+    "C": {
+      "item": "minecraft:glass"
+    },
+    "D": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "BAB",
+    "BDB",
+    "BCB "
+  ],
+  "result": {
+    "count": 1,
+    "id": "xpansion:fabricator"
+  }
+}
